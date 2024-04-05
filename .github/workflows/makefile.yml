@@ -2,7 +2,7 @@ name: build libs
 
 on:
   push:
-    branches: [ "mob" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
