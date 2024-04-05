@@ -1,0 +1,32 @@
+name: build libs
+
+on:
+  push:
+    branches: [ "mob" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      
+    - name: install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc make python3
+
+    - name: build libs
+      run: |
+        sh build.sh
+
+    - name: Release to GitHub
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        title: "libs for profanOS"
+        automatic_release_tag: latest
+        repo_token: "${{ secrets.GIT_TOKEN }}"
+        prerelease: false
+        files: |
+          build/*.so
