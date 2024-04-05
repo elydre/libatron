@@ -29,4 +29,4 @@ jobs:
         repo_token: "${{ secrets.GIT_TOKEN }}"
         prerelease: false
         files: |
-          build/*.so
+          build/*
