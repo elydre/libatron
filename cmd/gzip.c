@@ -26,9 +26,53 @@ char *get_dest_filename(const char *source, int compress) {
     return dest;
 }
 
+int compress_fd(FILE *in, FILE *out) {
+    int ret;
+    unsigned char inbuf[CHUNK_SIZE];
+    unsigned char outbuf[CHUNK_SIZE];
+    z_stream strm;
+    
+    strm.zalloc = Z_NULL;
+    strm.zfree = Z_NULL;
+    strm.opaque = Z_NULL;
+    ret = deflateInit(&strm, Z_DEFAULT_COMPRESSION);
+    if (ret != Z_OK) {
+        fprintf(stderr, "gzip: deflateInit failed\n");
+        return ret;
+    }
+
+    do {
+        strm.avail_in = fread(inbuf, 1, CHUNK_SIZE, in);
+        if (ferror(in)) {
+            deflateEnd(&strm);
+            fprintf(stderr, "gzip: fread failed\n");
+            return Z_ERRNO;
+        }
+        strm.next_in = inbuf;
+
+        do {
+            strm.avail_out = CHUNK_SIZE;
+            strm.next_out = outbuf;
+            ret = deflate(&strm, feof(in) ? Z_FINISH : Z_NO_FLUSH);
+            if (ret == Z_STREAM_ERROR) {
+                deflateEnd(&strm);
+                fprintf(stderr, "gzip: deflate failed\n");
+                return ret;
+            }
+            if (fwrite(outbuf, 1, CHUNK_SIZE - strm.avail_out, out) != CHUNK_SIZE - strm.avail_out || ferror(out)) {
+                deflateEnd(&strm);
+                fprintf(stderr, "gzip: fwrite failed\n");
+                return Z_ERRNO;
+            }
+        } while (strm.avail_out == 0);
+    } while (!feof(in));
+
+    deflateEnd(&strm);
+    return Z_OK;
+}
+
 int compress_file(const char *source) {
     char *dest = get_dest_filename(source, 1);
-    int ret = 0;
 
     FILE *source_file = fopen(source, "rb");
     if (!source_file) {
@@ -45,41 +89,8 @@ int compress_file(const char *source) {
         return 1;
     }
 
-    z_stream stream;
-    memset(&stream, 0, sizeof(stream));
+    int ret = compress_fd(source_file, dest_file) != Z_OK;
 
-    if (deflateInit(&stream, Z_BEST_COMPRESSION) != Z_OK) {
-        fclose(source_file);
-        fclose(dest_file);
-        free(dest);
-        fprintf(stderr, "gzip: Failed to initialize compression stream\n");
-        return 1;
-    }
-
-    uint8_t in_buffer[CHUNK_SIZE];
-    uint8_t out_buffer[CHUNK_SIZE];
-
-    stream.next_out = out_buffer;
-    stream.avail_out = CHUNK_SIZE;
-
-    do {
-        stream.next_in = in_buffer;
-        stream.avail_in = fread(in_buffer, 1, CHUNK_SIZE, source_file);
-        if (deflate(&stream, feof(source_file) ? Z_FINISH : Z_NO_FLUSH) == Z_STREAM_ERROR) {
-            fprintf(stderr, "gzip: Failed to compress data\n");
-            ret = 1;
-            break;
-        }
-
-        uint32_t have = CHUNK_SIZE - stream.avail_out;
-        if (fwrite(out_buffer, 1, have, dest_file) != have) {
-            fprintf(stderr, "gzip: Failed to write compressed data\n");
-            ret = 1;
-            break;
-        }
-    } while (stream.avail_out == 0);
-
-    deflateEnd(&stream);
     fclose(source_file);
     fclose(dest_file);
     free(dest);
@@ -87,9 +98,57 @@ int compress_file(const char *source) {
     return ret;
 }
 
+int decompress_fd(FILE *in, FILE *out) {
+    int ret;
+    unsigned char inbuf[CHUNK_SIZE];
+    unsigned char outbuf[CHUNK_SIZE];
+    z_stream strm;
+
+    strm.zalloc = Z_NULL;
+    strm.zfree = Z_NULL;
+    strm.opaque = Z_NULL;
+    strm.avail_in = 0;
+    strm.next_in = Z_NULL;
+    ret = inflateInit(&strm);
+    if (ret != Z_OK) {
+        fprintf(stderr, "gzip: inflateInit failed\n");
+        return ret;
+    }
+
+    do {
+        strm.avail_in = fread(inbuf, 1, CHUNK_SIZE, in);
+        if (ferror(in)) {
+            inflateEnd(&strm);
+            fprintf(stderr, "gzip: fread failed\n");
+            return Z_ERRNO;
+        }
+        if (strm.avail_in == 0) break;
+        strm.next_in = inbuf;
+
+        do {
+            strm.avail_out = CHUNK_SIZE;
+            strm.next_out = outbuf;
+            ret = inflate(&strm, Z_NO_FLUSH);
+            if (ret == Z_STREAM_ERROR) {
+                inflateEnd(&strm);
+                fprintf(stderr, "gzip: inflate failed\n");
+                return ret;
+            }
+            if (fwrite(outbuf, 1, CHUNK_SIZE - strm.avail_out, out) != CHUNK_SIZE - strm.avail_out || ferror(out)) {
+                inflateEnd(&strm);
+                fprintf(stderr, "gzip: fwrite failed\n");
+                return Z_ERRNO;
+            }
+        } while (strm.avail_out == 0);
+    } while (ret != Z_STREAM_END);
+
+    inflateEnd(&strm);
+    return Z_OK;
+}
+
 int decompress_file(const char *source) {
     char *dest = get_dest_filename(source, 0);
-    int tmp, ret = 0;
+    int flush, tmp, ret = 0;
 
     FILE *source_file = fopen(source, "rb");
     if (!source_file) {
@@ -106,46 +165,8 @@ int decompress_file(const char *source) {
         return 1;
     }
 
-    z_stream stream;
-    memset(&stream, 0, sizeof(stream));
+    ret = decompress_fd(source_file, dest_file) != Z_OK;
 
-    if (inflateInit(&stream) != Z_OK) {
-        fclose(source_file);
-        fclose(dest_file);
-        free(dest);
-        fprintf(stderr, "gzip: Failed to initialize decompression stream\n");
-        return 1;
-    }
-
-    uint8_t in_buffer[CHUNK_SIZE];
-    uint8_t out_buffer[CHUNK_SIZE];
-
-    stream.next_out = out_buffer;
-    stream.avail_out = CHUNK_SIZE;
-
-    do {
-        stream.next_in = in_buffer;
-        stream.avail_in = fread(in_buffer, 1, CHUNK_SIZE, source_file);
-
-        if (stream.avail_in == 0)
-            break;
-
-        tmp = inflate(&stream, Z_NO_FLUSH);
-        if (tmp == Z_NEED_DICT || tmp == Z_DATA_ERROR || tmp == Z_MEM_ERROR) {
-            fprintf(stderr, "gzip: Failed to decompress data\n");
-            ret = 1;
-            break;
-        }
-
-        uint32_t have = CHUNK_SIZE - stream.avail_out;
-        if (fwrite(out_buffer, 1, have, dest_file) != have) {
-            fprintf(stderr, "gzip: Failed to write decompressed data\n");
-            ret = 1;
-            break;
-        }
-    } while (stream.avail_out == 0);
-
-    inflateEnd(&stream);
     fclose(source_file);
     fclose(dest_file);
     free(dest);
