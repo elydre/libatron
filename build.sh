@@ -18,8 +18,8 @@ fi
 
 mkdir -p build
 
-for e in lib*; do
-    cp profanOS/out/zlibs/$e.so build
+for e in $(ls profanOS/out/zlibs/*.so); do
+    cp $e build
 done
 
 for e in cmd/*; do
