@@ -89,6 +89,8 @@ int compress_file(const char *source) {
         return 1;
     }
 
+    fwrite("\x1f\x8b", 1, 2, dest_file);
+
     int ret = compress_fd(source_file, dest_file) != Z_OK;
 
     fclose(source_file);
@@ -146,6 +148,12 @@ int decompress_fd(FILE *in, FILE *out) {
     return Z_OK;
 }
 
+int is_fd_gzip(FILE *file) {
+    unsigned char header[2];
+    if (fread(header, 1, 2, file) != 2) return 0;
+    return header[0] == 0x1f && header[1] == 0x8b;
+}
+
 int decompress_file(const char *source) {
     char *dest = get_dest_filename(source, 0);
     int flush, tmp, ret = 0;
@@ -154,6 +162,13 @@ int decompress_file(const char *source) {
     if (!source_file) {
         free(dest);
         fprintf(stderr, "gzip: %s: No such file or directory\n", source);
+        return 1;
+    }
+
+    if (!is_fd_gzip(source_file)) {
+        fclose(source_file);
+        free(dest);
+        fprintf(stderr, "gzip: %s: Not in gzip format\n", source);
         return 1;
     }
 
