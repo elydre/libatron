@@ -85,8 +85,6 @@ typedef	uint16_t	fexcept_t;
 #define	_SSE_ROUND_SHIFT	3
 #define	_SSE_EMASK_SHIFT	7
 
-__BEGIN_DECLS
-
 /* After testing for SSE support once, we cache the result in __has_sse. */
 enum __sse_support { __SSE_YES, __SSE_NO, __SSE_UNK };
 OLM_DLLEXPORT extern enum __sse_support __has_sse;
@@ -254,7 +252,5 @@ fegetexcept(void)
 }
 
 #endif /* __BSD_VISIBLE */
-
-__END_DECLS
 
 #endif	/* !_FENV_H_ */

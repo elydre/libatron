@@ -486,5 +486,3 @@ OLM_DLLEXPORT void	sincosl(long double, long double *, long double *);
 }
 #endif
 #endif /* !OPENLIBM_MATH_H */
-
-#endif /* OPENLIBM_USE_HOST_MATH_H */
