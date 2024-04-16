@@ -1,6 +1,7 @@
 git clone https://github.com/elydre/profanOS
+rm -rf build
 
-for e in lib*; do
+for e in bip/lib*; do
     cp -r $e profanOS/zlibs/
 done
 
@@ -25,6 +26,13 @@ done
 for e in cmd/*; do
     e=$(basename $e .c)
     cp profanOS/out/zapps/cmd/$e.elf build
+done
+
+for e in bil/*; do
+    echo "Building $e"
+    cd $e
+    sh build.sh
+    cd ..
 done
 
 rm -rf profanOS
