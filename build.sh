@@ -29,10 +29,10 @@ for e in cmd/*; do
 done
 
 for e in bil/*; do
-    echo "Building $e"
+    echo "Building $e..."
     cd $e
     sh build.sh
-    cd ..
+    cd ../..
 done
 
 rm -rf profanOS
