@@ -31,8 +31,10 @@ done
 for e in bil/*; do
     echo "Building $e..."
     cd $e
-    sh build.sh
+    bash build.sh
     cd ../..
 done
+
+bash build_extra.sh
 
 rm -rf profanOS
