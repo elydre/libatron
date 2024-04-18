@@ -1,6 +1,11 @@
 git clone https://github.com/elydre/profanOS
 rm -rf build
 
+mkdir -p profanOS/include/addons/
+for e in $(find _headers -type f); do
+    cp $e profanOS/include/addons/
+done
+
 for e in bip/lib*; do
     cp -r $e profanOS/zlibs/
 done
