@@ -10,6 +10,8 @@ for e in bip/lib*; do
     cp -r $e profanOS/zlibs/
 done
 
+git clone https://github.com/asqel/oeuf.git profanOS/zlibs/liboe/
+
 for e in cmd/*; do
     cp -r $e profanOS/zapps/cmd/
 done
