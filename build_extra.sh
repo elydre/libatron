@@ -1,3 +1,4 @@
+rm -rf act
 git clone https://github.com/asqel/act.git
 
 echo "Building act..."

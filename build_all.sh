@@ -26,7 +26,17 @@ fi
 
 mkdir -p build
 
-for e in $(ls profanOS/out/zlibs/*.so); do
+for e in $(echo "profanOS/out/zlibs/lib*/"); do
+    out=$(basename $e).a
+    ar rcs build/$out $(find $e -name "*.o")
+    if [ $? -ne 0 ]; then
+        echo "Error: ar failed"
+        exit 1
+    fi
+    echo "Created $out"
+done
+
+for e in $(echo profanOS/out/zlibs/*.so); do
     cp $e build
 done
 
