@@ -7,3 +7,4 @@ cd act
 bash build_generic.sh ../profanOS "-lpm"
 cp act.elf ../build
 cd ..
+rm -rf act
