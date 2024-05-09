@@ -65,11 +65,8 @@
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
 #define SIGN(x)   (((x) > 0) - ((x) < 0))
 /* Allocate values on the stack if they are small enough, else spill to heap. */
-#define STACK_ALLOC(var, type, thresh, count) \
-	type var##_stack_[thresh]; \
-	var = (count) <= (thresh) ? var##_stack_ : calloc(sizeof(type), count);
-#define STACK_FREE(var) \
-	if (var != var##_stack_) free(var);
+#define STACK_ALLOC(var, type, thresh, count) calloc(sizeof(type), count);
+#define STACK_FREE(var) free(var);
 
 enum { SrcMapping, SrcUser };
 
