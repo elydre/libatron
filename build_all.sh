@@ -11,7 +11,11 @@ for e in bip/lib*; do
     cp -r $e profanOS/zlibs/
 done
 
-git clone https://github.com/asqel/oeuf.git profanOS/zlibs/liboe/
+mkdir -p profanOS/zlibs/liboe
+git clone https://github.com/asqel/oeuf.git tmp_oe
+cp -r tmp_oe/src profanOS/zlibs/liboe/src
+cp tmp_oe/oeuf.h profanOS/zlibs/liboe/
+rm -rf tmp_oe
 
 for e in cmd/*; do
     cp -r $e profanOS/zapps/cmd/
