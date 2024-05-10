@@ -1,5 +1,6 @@
+rm -rf profanOS build
+
 git clone https://github.com/elydre/profanOS
-rm -rf build
 
 mkdir -p profanOS/include/addons/
 for e in $(find _headers -type f); do
