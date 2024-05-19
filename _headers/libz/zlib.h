@@ -137,6 +137,10 @@ typedef void       *voidp;
 #  define Z_HAVE_STDARG_H
 #endif
 
+#ifndef Z_SOLO
+#  include <stdarg.h>         /* for va_list */
+#endif
+
 /* a little trick to accommodate both "#define _LARGEFILE64_SOURCE" and
  * "#define _LARGEFILE64_SOURCE 1" as requesting 64-bit operations, (even
  * though the former does not conform to the LFS document), but considering
