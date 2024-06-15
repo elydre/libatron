@@ -11,6 +11,7 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **libm** | Math library | openlibm 0.8.2 | [here](https://github.com/JuliaMath/openlibm) | MIT |
 | **liboe** | Additional functions | | [here](https://github.com/asqel/oeuf) | |
 | **libschrift** | Font rendering library | 0.10.2| [here](https://github.com/tomolt/libschrift) | ISC |
+| **libSDL2** | Simple Directmedia Layer | 2 | [here](https://github.com/libsdl-org/SDL/tree/SDL2) | as-is |
 | **libupng** | PNG image decoding library | 20100808 | [here](https://github.com/elanthis/upng) | as-is |
 | **libz** | Compression library | 1.3.1.1-motley | [here](https://github.com/openbsd/src/tree/master/lib/libz) | BSD |
 
