@@ -89,4 +89,4 @@ objs=$(echo $objs | tr " " "\n" | sort -n)
 # compile zentry and link all object files
 link_files $(compile_file $profan_path/tools/entry_elf.c $OBJDIR/zentry.o) $objs
 
-echo "> $OUTPUT.elf created successfully" > /dev/tty
+echo "> $OUTPUT.elf created successfully"
