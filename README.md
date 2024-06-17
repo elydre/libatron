@@ -8,6 +8,7 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | Name | Description | Version | source | License |
 |------|-------------|---------|--------|---------|
 | **libcjson** | JSON parser | 1.7.17 | [here](https://github.com/DaveGamble/cJSON) | MIT |
+| **libgcc** | GCC runtime | 13.2.1 | [here](https://gcc.gnu.org/) | GPL-3.0 |
 | **libm** | Math library | openlibm 0.8.2 | [here](https://github.com/JuliaMath/openlibm) | MIT |
 | **liboe** | Additional functions | | [here](https://github.com/asqel/oeuf) | |
 | **libschrift** | Font rendering library | 0.10.2| [here](https://github.com/tomolt/libschrift) | ISC |

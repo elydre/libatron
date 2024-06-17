@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <fcntl.h>
 
 typedef struct {
     char  *full_path;
@@ -493,7 +494,7 @@ int fucking_unchiled(pipex_t *pipex, int *ret) {
     saved_in = saved_out = -1;
 
     if (pipex->commands[0]->input_file) {
-        in_fd = profan_open(pipex->commands[0]->input_file, O_RDONLY);
+        in_fd = open(pipex->commands[0]->input_file, O_RDONLY);
         saved_in = dup(STDIN_FILENO);
         if (dup2(in_fd, STDIN_FILENO) == -1) {
             fprintf(stderr, SHELL_NAME": %s: no such file or directory");
@@ -503,7 +504,7 @@ int fucking_unchiled(pipex_t *pipex, int *ret) {
     }
 
     if (pipex->commands[0]->output_file) {
-        out_fd = profan_open(pipex->commands[0]->output_file,
+        out_fd = open(pipex->commands[0]->output_file,
                 O_WRONLY | O_CREAT | (pipex->commands[0]->append_in_output ? O_APPEND : O_TRUNC));
         saved_out = dup(STDOUT_FILENO);
         if (dup2(out_fd, STDOUT_FILENO) == -1) {
@@ -553,7 +554,7 @@ char *gen_heredoc_file(char *end) {
     strcpy(filename, "/tmp/sh_heredoc_");
     itoa(i++, filename + 16, 10);
 
-    int fd = profan_open(filename, O_WRONLY | O_CREAT | O_TRUNC);
+    int fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC);
     if (fd == -1)
         return NULL;
 
@@ -767,7 +768,7 @@ int start_pipex(pipex_t *pipex) {
                 // already in pipe
                 fds[i * 2] = pipefd[0];
             } else {
-                fds[i * 2] = profan_open(pipex->commands[i]->input_file, O_RDONLY);
+                fds[i * 2] = open(pipex->commands[i]->input_file, O_RDONLY);
             }
         }
         if (i != pipex->command_count - 1 || pipex->commands[i]->output_file != NULL) {
@@ -775,7 +776,7 @@ int start_pipex(pipex_t *pipex) {
                 pipe(pipefd);
                 fds[i * 2 + 1] = pipefd[1];
             } else {
-                fds[i * 2 + 1] = profan_open(pipex->commands[i]->output_file,
+                fds[i * 2 + 1] = open(pipex->commands[i]->output_file,
                         O_WRONLY | O_CREAT | (pipex->commands[i]->append_in_output ? O_APPEND : O_TRUNC));
             }
         }

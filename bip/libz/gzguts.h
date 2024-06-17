@@ -42,10 +42,9 @@
 #ifndef _POSIX_C_SOURCE
 #  define _POSIX_C_SOURCE 200112L
 #endif
-#include <profan.h>
 #include <stdlib.h>
 #include <string.h>
-#define open(path, flags, ...) profan_open(path, flags, __VA_ARGS__)
+#include <fcntl.h>
 
 #ifdef _WIN32
 #  include <stddef.h>
