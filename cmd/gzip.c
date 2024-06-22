@@ -156,7 +156,7 @@ int is_fd_gzip(FILE *file) {
 
 int decompress_file(const char *source) {
     char *dest = get_dest_filename(source, 0);
-    int flush, tmp, ret = 0;
+    int ret;
 
     FILE *source_file = fopen(source, "rb");
     if (!source_file) {

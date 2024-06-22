@@ -334,7 +334,6 @@ char *ss_mv_single(char *arg, int last_exit) {
             for (int k = 0; k < value_len; k++)
                 arg[tmp + k] = value[k];
             j = tmp + value_len - 1;
-            value;
             free(var);
         }
     }
