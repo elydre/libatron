@@ -4,7 +4,7 @@ unzip -q SDL2.zip
 prefix="SDL-SDL2"
 
 profan_path="../../profanOS"
-CFLAGS="-ffreestanding -fno-exceptions -m32 -I$profan_path/include/zlibs -I$profan_path/include/addons -O1 -nostdinc -U_WIN32 -U__linux__ -I$prefix/include -Isrc -D__profanOS__=1"
+CFLAGS="-fPIC -ffreestanding -fno-exceptions -m32 -I$profan_path/include/zlibs -I$profan_path/include/addons -O1 -nostdinc -U_WIN32 -U__linux__ -I$prefix/include -Isrc -D__profanOS__=1"
 
 LDFLAGS="-shared -nostdlib -m32"
 LD=gcc
