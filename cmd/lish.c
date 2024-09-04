@@ -169,7 +169,7 @@ char *get_path(char *file) {
     char *path_part;
     char **allpath;
     char *path;
-    sid_t sid;
+    uint32_t sid;
 
     if (file[0] == '/' || file[0] == '.') {
         char *wd = getenv("PWD");
@@ -186,7 +186,7 @@ char *get_path(char *file) {
         path = ft_strjoin(path_part, file);
         free(path_part);
         sid = fu_path_to_sid(ROOT_SID, path);
-        if (!IS_NULL_SID(sid) && fu_is_file(sid)) {
+        if (!fu_is_file(sid)) {
             free_tab(allpath);
             return path;
         }
@@ -195,7 +195,7 @@ char *get_path(char *file) {
         path = ft_strjoin(path_part, ".elf");
         free(path_part);
         sid = fu_path_to_sid(ROOT_SID, path);
-        if (!IS_NULL_SID(sid) && fu_is_file(sid)) {
+        if (!fu_is_file(sid)) {
             free_tab(allpath);
             return path;
         }
@@ -445,8 +445,8 @@ int builtin_cd(char **args) {
     char *dir = assemble_path(current_path, args[1]);
     fu_simplify_path(dir);
 
-    sid_t dir_id = fu_path_to_sid(ROOT_SID, dir);
-    if (IS_NULL_SID(dir_id) || !fu_is_dir(dir_id)) {
+    uint32_t dir_id = fu_path_to_sid(ROOT_SID, dir);
+    if (!fu_is_dir(dir_id)) {
         fprintf(stderr, SHELL_NAME": cd: %s: no such file or directory\n", args[1]);
         free(dir);
         return 1;
@@ -782,8 +782,8 @@ int start_pipex(pipex_t *pipex) {
     }
 
     for (int i = 0; i < pipex->command_count; i++) {
-        sid_t sid = fu_path_to_sid(ROOT_SID, pipex->commands[i]->full_path);
-        if (IS_NULL_SID(sid) || !fu_is_file(sid)) {
+        uint32_t sid = fu_path_to_sid(ROOT_SID, pipex->commands[i]->full_path);
+        if (!fu_is_file(sid)) {
             fprintf(stderr, SHELL_NAME": %s: command not found\n", pipex->commands[i]->args[0]);
             close_fds(pipex, fds, i);
             continue;
@@ -805,7 +805,7 @@ int start_pipex(pipex_t *pipex) {
             if (dup2(fds[i * 2], fm_resol012(0, pids[i])) == -1) {
                 fprintf(stderr, SHELL_NAME": %s: no such file or directory\n", pipex->commands[i]->input_file);
                 close_fds(pipex, fds, i);
-                c_exit_pid(pids[i], 1, 0);
+                syscall_process_exit(pids[i], 1, 0);
                 continue;
             }
         }
@@ -814,13 +814,13 @@ int start_pipex(pipex_t *pipex) {
             if (dup2(fds[i * 2 + 1], fm_resol012(1, pids[i])) == -1) {
                 fprintf(stderr, SHELL_NAME": %s: no such file or directory\n", pipex->commands[i]->output_file);
                 close_fds(pipex, fds, i);
-                c_exit_pid(pids[i], 1, 0);
+                syscall_process_exit(pids[i], 1, 0);
                 continue;
             }
         }
 
         close_fds(pipex, fds, i);
-        c_process_wakeup(pids[i]);
+        syscall_process_wakeup(pids[i]);
     };
 
     free(fds);
