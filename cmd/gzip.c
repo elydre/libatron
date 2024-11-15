@@ -1,4 +1,4 @@
-// @LINK SHARED: libz
+// @LINK: libz
 
 #include <stdio.h>
 #include <stdlib.h>

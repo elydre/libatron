@@ -49,7 +49,7 @@ char *readline(char *prompt) {
     fputs(prompt, stdout);
     fflush(stdout);
 
-    char *line = open_input(&len);
+    char *line = profan_input(&len);
     if (len == 0) {
         puts("");
         free(line);
@@ -174,7 +174,7 @@ char *get_path(char *file) {
     if (file[0] == '/' || file[0] == '.') {
         char *wd = getenv("PWD");
         if (!wd) return strdup(file);
-        char *full_path = assemble_path(wd, file);
+        char *full_path = profan_join_path(wd, file);
         return full_path;
     }
 
@@ -185,7 +185,7 @@ char *get_path(char *file) {
         path_part = ft_strjoin(allpath[i], "/");
         path = ft_strjoin(path_part, file);
         free(path_part);
-        sid = fu_path_to_sid(ROOT_SID, path);
+        sid = fu_path_to_sid(SID_ROOT, path);
         if (!fu_is_file(sid)) {
             free_tab(allpath);
             return path;
@@ -194,7 +194,7 @@ char *get_path(char *file) {
         path_part = path;
         path = ft_strjoin(path_part, ".elf");
         free(path_part);
-        sid = fu_path_to_sid(ROOT_SID, path);
+        sid = fu_path_to_sid(SID_ROOT, path);
         if (!fu_is_file(sid)) {
             free_tab(allpath);
             return path;
@@ -442,10 +442,10 @@ int builtin_cd(char **args) {
     }
 
     // assemble and simplify path
-    char *dir = assemble_path(current_path, args[1]);
+    char *dir = profan_join_path(current_path, args[1]);
     fu_simplify_path(dir);
 
-    uint32_t dir_id = fu_path_to_sid(ROOT_SID, dir);
+    uint32_t dir_id = fu_path_to_sid(SID_ROOT, dir);
     if (!fu_is_dir(dir_id)) {
         fprintf(stderr, SHELL_NAME": cd: %s: no such file or directory\n", args[1]);
         free(dir);
@@ -782,7 +782,7 @@ int start_pipex(pipex_t *pipex) {
     }
 
     for (int i = 0; i < pipex->command_count; i++) {
-        uint32_t sid = fu_path_to_sid(ROOT_SID, pipex->commands[i]->full_path);
+        uint32_t sid = fu_path_to_sid(SID_ROOT, pipex->commands[i]->full_path);
         if (!fu_is_file(sid)) {
             fprintf(stderr, SHELL_NAME": %s: command not found\n", pipex->commands[i]->args[0]);
             close_fds(pipex, fds, i);
