@@ -22,7 +22,5 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 
 | Name | Description | Version | source | License |
 |------|-------------|---------|--------|---------|
-| **act** | Compilation tool | *sync* | [here](https://github.com/asqel/act) | |
 | **aledlang** | Aled compiler and debugger | *sync* | [here](https://github.com/elydre/aledlang) | GPL-3.0 |
 | **gzip** | Compression tool | | [local](cmd/gzip.c) | GPL-3.0 |
-| **lish** | Lightweight bash-like | | [local](cmd/lish.c) | GPL-3.0 |
