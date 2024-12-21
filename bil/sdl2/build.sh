@@ -19,14 +19,12 @@ files="$prefix/src/*.c $prefix/src/atomic/*.c $prefix/src/audio/*.c $prefix/src/
 count=0
 
 for i in $files; do
-    echo "Compiling $i..."
-    $CC $CFLAGS -c $i -o $bins/$count.o
-    if [ ! -f $bins/$count.o ]; then
-        echo "Cannot compile $i"
-        exit 1
-    fi
+    echo "$i"
+    $CC $CFLAGS -c $i -o $bins/$count.o &
     count=$((count + 1))
 done
+
+wait
 
 $LD $LDFLAGS -o ../../build/libSDL2.so $bins/*.o
 
