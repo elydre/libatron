@@ -24,3 +24,5 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 |------|-------------|---------|--------|---------|
 | **aledlang** | Aled compiler and debugger | *sync* | [here](https://github.com/elydre/aledlang) | GPL-3.0 |
 | **gzip** | Compression tool | | [local](cmd/gzip.c) | GPL-3.0 |
+| **fortune** | Fortune cookie generator | | [local](cmd/fortune.c) | GPL-3.0 |
+| **doom** | Doom game engine | | [here](https://github.com/ozkl/doomgeneric) | GPL-2.0 |
