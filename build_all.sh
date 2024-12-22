@@ -11,7 +11,7 @@ cp -r tmp_oe/src/ profanOS/zlibs/liboe/
 cp tmp_oe/oeuf.h profanOS/zlibs/liboe/
 rm -rf tmp_oe
 
-git clone https://github.com/elydre/aledlang profanOS/zapps/fatpath/aledlang
+git clone https://github.com/elydre/aledlang profanOS/zapps/cmd/aledlang
 
 # copy headers to profanOS directory
 mkdir -p profanOS/include/addons/
@@ -67,7 +67,7 @@ for e in $(echo profanOS/out/zlibs/*.so); do
 done
 
 # copy compiled commands to build directory
-for e in cmd/*; do
+for e in cmd/* aledlang; do
     e=$(basename $e .c)
     cp profanOS/out/zapps/cmd/$e.elf build
 done
