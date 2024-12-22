@@ -26,7 +26,7 @@ jobs:
     - name: Release to GitHub
       uses: marvinpinto/action-automatic-releases@latest
       with:
-        title: "libs for profanOS"
+        title: "Automatic Release"
         automatic_release_tag: latest
         repo_token: "${{ secrets.GIT_TOKEN }}"
         prerelease: false
