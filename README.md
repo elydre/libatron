@@ -17,11 +17,11 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | Command | Description | Version | source | License |
 |------|-------------|---------|--------|---------|
 | **aledlang** | Aled compiler and debugger | *sync* | [here](https://github.com/elydre/aledlang) | GPL-3.0 |
-| **gzip** | Compression tool | - | [local](cmd/gzip.c) | GPL-3.0 |
-| **fortune** | Fortune cookie generator | - | [local](cmd/fortune.c) | GPL-3.0 |
 | **doom** | Doom game engine | Generic 0.1 | [here](https://github.com/ozkl/doomgeneric) | GPL-2.0 |
-| **lua** | Lua interpreter | 5.4.6 | [here](https://github.com/lua/lua) | MIT |
+| **fortune** | Fortune cookie generator | - | [local](cmd/fortune.c) | GPL-3.0 |
+| **gzip** | Compression tool | - | [local](cmd/gzip.c) | GPL-3.0 |
 | **halfix** | x86 emulator | jan 2021 | [here](https://github.com/nepx/halfix) | GPL-3.0 |
+| **lua** | Lua interpreter | 5.4.6 | [here](https://github.com/lua/lua) | MIT |
 
 *I'm not the author of these commands or libraries, I just made them work on profanOS.*
 *The GPL-3.0 at the root of this repository is only for the scripts I wrote.*
