@@ -4,6 +4,7 @@ export PROFANOS_KIND=1
 export PROFANOS_OPTIM=1
 
 git clone https://github.com/elydre/profanOS
+make -C profanOS disk
 
 # download external projects
 git clone https://github.com/asqel/oeuf.git tmp_oe
