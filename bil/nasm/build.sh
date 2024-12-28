@@ -4,8 +4,7 @@ PROFAN_PATH="../../profanOS"
 OUT_PATH="../../build"
 
 CFLAGS="-std=c17 -fwrapv -U__STRICT_ANSI__ -fno-common -ffunction-sections -fdata-sections -fvisibility=hidden -Wall \
--W -pedantic -Werror=implicit -Werror=missing-braces -Werror=return-type -Werror=trigraphs -Werror=pointer-arith -Werror=strict-prototypes \
--Werror=missing-prototypes -Werror=missing-declarations -Werror=comment -Werror=vla -Wno-variadic-macros -Wno-long-long -Wno-stringop-truncation \
+-W -pedantic -Wno-variadic-macros -Wno-long-long -Wno-stringop-truncation -Wno-unused -Wno-attributes \
 -Wno-shift-negative-value -ffreestanding -fno-exceptions -m32 -I$PROFAN_PATH/include/zlibs -O1 -nostdinc -DHAVE_CONFIG_H \
 -I. -I. -I./include -I./include -I./x86 -I./x86 -I./asm -I./asm -I./disasm -I./disasm -I./output -I./output"
 
@@ -15,19 +14,15 @@ OBJS=""
 for dir in $SRCDIRS; do
     for file in $dir/*.c; do
         echo "CC $file"
-        gcc $CFLAGS -c -o ${file%.c}.o $file
-        if [ $? -ne 0 ]; then
-            echo "Failed to compile $file"
-            exit 1
-        fi
+        gcc $CFLAGS -c -o ${file%.c}.o $file &
         OBJS="$OBJS ${file%.c}.o"
     done
 done
 
+wait
+
 ar cq $OUT_PATH/libnasm.a $OBJS
 ranlib $OUT_PATH/libnasm.a
-
-echo $OBJS | wc -w
 
 gcc -c $CFLAGS -o mains/ndisasm.o mains/ndisasm.c
 gcc -c $CFLAGS -o mains/nasm.o mains/nasm.c

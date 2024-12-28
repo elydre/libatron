@@ -14,12 +14,6 @@ rm -rf tmp_oe
 
 git clone https://github.com/elydre/aledlang profanOS/zapps/cmd/aledlang
 
-# copy headers to profanOS directory
-mkdir -p profanOS/include/addons/
-for e in $(find _headers -type f); do
-    cp $e profanOS/include/addons/
-done
-
 # copy lib to build with profanOS
 for e in bip/lib*; do
     cp -r $e profanOS/zlibs/
@@ -31,7 +25,8 @@ for e in cmd/*; do
 done
 
 # copy headers to profanOS directory
-cp -r _headers profanOS/include/addons/
+mkdir -p profanOS/include/addons/
+cp -r _headers/*/* profanOS/include/addons/
 
 # build some libraries in linux
 mkdir -p build profanOS/out/zlibs/
@@ -74,3 +69,5 @@ for e in cmd/* aledlang; do
 done
 
 rm -rf profanOS
+
+ls -gh build
