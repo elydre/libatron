@@ -19,6 +19,7 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **fortune** | Fortune cookie generator | - | [local](cmd/fortune.c) | GPL-3.0 |
 | **gzip** | Compression tool | - | [local](cmd/gzip.c) | GPL-3.0 |
 | **halfix** | x86 emulator | jan 2021 | [here](https://github.com/nepx/halfix) | GPL-3.0 |
+| **limine** | modern bootloader | 8 *sync* | [here](https://github.com/limine-bootloader/limine) | BSD-2-Clause |
 | **lua** | Lua interpreter | 5.4.6 | [here](https://github.com/lua/lua) | MIT |
 | **mkisofs** | ISO creator | 1.11-2 | [here](https://sources.debian.org/src/mkisofs/1.11-2) | GPL-2.0 |
 | **vlink** | multi format linker | 0.17a | [here](https://web.archive.org/web/20221203014918/http://sun.hasenbraten.de/vlink/index.php?view=main) | proprietary (open source) |

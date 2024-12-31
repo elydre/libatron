@@ -6,14 +6,6 @@ export PROFANOS_OPTIM=2
 git clone https://github.com/elydre/profanOS
 make -C profanOS disk
 
-# download external projects
-git clone https://github.com/asqel/oeuf.git tmp_oe
-cp -r tmp_oe/src/ profanOS/zlibs/liboe/
-cp tmp_oe/oeuf.h profanOS/zlibs/liboe/
-rm -rf tmp_oe
-
-git clone https://github.com/elydre/aledlang profanOS/zapps/cmd/aledlang
-
 # copy lib to build with profanOS
 for e in bip/lib*; do
     cp -r $e profanOS/zlibs/
@@ -31,6 +23,7 @@ cp -r _headers/*/* profanOS/include/addons/
 # build some libraries in linux
 mkdir -p build profanOS/out/zlibs/
 
+touch tocp.txt
 for e in bil/*; do
     echo "Building $e..."
     cd $e
@@ -63,11 +56,10 @@ for e in $(echo profanOS/out/zlibs/*.so); do
 done
 
 # copy compiled commands to build directory
-for e in cmd/* aledlang; do
+for e in cmd/* $(cat tocp.txt); do
     e=$(basename $e .c)
     cp profanOS/out/zapps/cmd/$e.elf build
 done
 
-rm -rf profanOS
-
+rm -rf profanOS tocp.txt
 ls -gh build
