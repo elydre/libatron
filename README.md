@@ -25,4 +25,3 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **vlink** | multi format linker | 0.17a | [here](https://web.archive.org/web/20221203014918/http://sun.hasenbraten.de/vlink/index.php?view=main) | proprietary (open source) |
 
 *I'm not the author of these commands or libraries, I just made them work on profanOS.*
-*The GPL-3.0 at the root of this repository is only for the scripts I wrote.*
