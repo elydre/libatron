@@ -1,7 +1,7 @@
 rm -rf profanOS build
 
 export PROFANOS_KIND=1
-export PROFANOS_OPTIM=1
+export PROFANOS_OPTIM=2
 
 git clone https://github.com/elydre/profanOS
 make -C profanOS disk
