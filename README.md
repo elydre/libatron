@@ -22,6 +22,8 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **gzip** | Compression tool | - | [local](cmd/gzip.c) | GPL-3.0 |
 | **halfix** | x86 emulator | jan 2021 | [here](https://github.com/nepx/halfix) | GPL-3.0 |
 | **lua** | Lua interpreter | 5.4.6 | [here](https://github.com/lua/lua) | MIT |
+| **mkisofs** | ISO creator | 1.11-2 | [here](https://sources.debian.org/src/mkisofs/1.11-2) | GPL-2.0 |
+| **vlink** | multi format linker | 0.17a | [here](https://web.archive.org/web/20221203014918/http://sun.hasenbraten.de/vlink/index.php?view=main) | proprietary (open source) |
 
 *I'm not the author of these commands or libraries, I just made them work on profanOS.*
 *The GPL-3.0 at the root of this repository is only for the scripts I wrote.*
