@@ -13,9 +13,7 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **libSDL2** | Simple Directmedia Layer | 2 | [here](https://github.com/libsdl-org/SDL/tree/SDL2) | as-is |
 | **libupng** | PNG image decoding library | 20100808 | [here](https://github.com/elanthis/upng) | as-is |
 | **libz** | Compression library | 1.3.1.1-motley | [here](https://github.com/openbsd/src/tree/master/lib/libz) | BSD |
-
-| Command | Description | Version | source | License |
-|------|-------------|---------|--------|---------|
+| - | - | - | - | - |
 | **aledlang** | Aled compiler and debugger | *sync* | [here](https://github.com/elydre/aledlang) | GPL-3.0 |
 | **doom** | Doom game engine | Generic 0.1 | [here](https://github.com/ozkl/doomgeneric) | GPL-2.0 |
 | **fortune** | Fortune cookie generator | - | [local](cmd/fortune.c) | GPL-3.0 |
