@@ -934,7 +934,11 @@ static int drive_simple_read(void* this, void* cb_ptr, void* buffer, uint32_t si
             lseek(info->fh, offset, SEEK_SET);
             if (read(info->fh, buffer, 512) != 512)
 #endif
+            {
+                if (offset + 512 > info->image_size)
+                    return DRIVE_RESULT_SYNC;
                 DRIVE_FATAL("Unable to read 512 bytes from image file\n");
+            }
         }
         buffer += 512;
         offset += 512;
