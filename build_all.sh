@@ -18,7 +18,7 @@ done
 
 # copy headers to profanOS directory
 mkdir -p profanOS/include/addons/
-cp -r _headers/*/* profanOS/include/addons/
+cp -r rsc/*/* profanOS/include/addons/
 
 # build some libraries in linux
 mkdir -p build profanOS/out/zlibs/
