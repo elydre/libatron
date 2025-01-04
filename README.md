@@ -23,6 +23,7 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **lua** | Lua interpreter | 5.4.6 | [here](https://github.com/lua/lua) | MIT |
 | **mkisofs** | ISO creator | 1.11-2 | [here](https://sources.debian.org/src/mkisofs/1.11-2) | GPL-2.0 |
 | **nasm** | Netwide Assembler | 2.16.03 | [here](https://www.nasm.us/) | BSD-2-Clause |
+| **perl** | Perl interpreter | 5.40.0 | [here](https://www.perl.org/) | Artistic-2.0 |
 | **sulfur** | Sulfur interpreter | *sync* | [here](https://github.com/asqel/sulfur_lang) | GPL-3.0 |
 | **vlink** | multi format linker | 0.17a | [here](https://web.archive.org/web/20221203014918/http://sun.hasenbraten.de/vlink/index.php?view=main) | proprietary (open source) |
 
