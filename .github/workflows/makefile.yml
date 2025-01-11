@@ -17,7 +17,7 @@ jobs:
     - name: install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y gcc make python3
+        sudo apt-get install -y gcc make python3 binutils-i686-linux-gnu
 
     - name: build libs
       run: |
