@@ -1,0 +1,12 @@
+diff -ru /home/pf4/Downloads/Python-3.11.11/Include/internal/pycore_bitutils.h py-profan/Include/internal/pycore_bitutils.h
+--- /home/pf4/Downloads/Python-3.11.11/Include/internal/pycore_bitutils.h	2024-12-03 18:20:40.000000000 +0100
++++ py-profan/Include/internal/pycore_bitutils.h	2025-01-06 18:00:18.654691596 +0100
+@@ -94,7 +94,7 @@
+ static inline int
+ _Py_popcount32(uint32_t x)
+ {
+-#if (defined(__clang__) || defined(__GNUC__))
++#if (defined(__clang__) || defined(__GNUC__)) && !defined(__profanOS__)
+ 
+ #if SIZEOF_INT >= 4
+     Py_BUILD_ASSERT(sizeof(x) <= sizeof(unsigned int));
