@@ -59,7 +59,6 @@ export CPPFLAGS="--sysroot=$profan_sysroot -I $profan_path/include/zlibs"
             --build=x86_64-linux-gnu \
             --with-build-python=$(pwd)/../python-linux/bin/python3 \
             --with-suffix=.elf \
-            --without-pymalloc \
             CC="$CC" \
             CFLAGS="$CFLAGS" \
             LDFLAGS="$LDFLAGS" \
