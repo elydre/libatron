@@ -12,6 +12,7 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **halfix** | x86 emulator | jan 2021 | [here](https://github.com/nepx/halfix) | GPL-3.0 |
 | **limine** | modern bootloader | 8 *sync* | [here](https://github.com/limine-bootloader/limine) | BSD-2-Clause |
 | **lua** | Lua interpreter | 5.4.6 | [here](https://github.com/lua/lua) | MIT |
+| **make** | GNU make | 4.4 | [here](https://www.gnu.org/software/make/) | GPL-3.0 |
 | **mkisofs** | ISO creator | 1.11-2 | [here](https://sources.debian.org/src/mkisofs/1.11-2) | GPL-2.0 |
 | **nasm** | Netwide Assembler | 2.16.03 | [here](https://www.nasm.us/) | BSD-2-Clause |
 | **perl** | Perl interpreter | 5.40.0 | [here](https://www.perl.org/) | Artistic-2.0 |
