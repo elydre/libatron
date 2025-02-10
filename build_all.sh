@@ -7,7 +7,7 @@ git clone https://github.com/elydre/profanOS
 make -C profanOS disk
 
 # copy lib to build with profanOS
-for e in bip/lib*; do
+for e in lib/lib*; do
     cp -r $e profanOS/zlibs/
 done
 
