@@ -1244,8 +1244,8 @@
  *	This symbol, if defined, indicates that we'd like to relocate entries
  *	in @INC at run time based on the location of the perl binary.
  */
-#define BIN "/bin/fatpath"	/**/
-#define BIN_EXP "/bin/fatpath"	/**/
+#define BIN "/bin/h"	/**/
+#define BIN_EXP "/bin/h"	/**/
 #define PERL_RELOCATABLE_INC "undef"		/**/
 
 /* PERL_INC_VERSION_LIST:
@@ -4261,7 +4261,7 @@
  *	script to make sure (one hopes) that it runs with perl and not
  *	some shell.
  */
-#define STARTPERL "#!/bin/fatpath/perl"		/**/
+#define STARTPERL "#!/bin/h/perl"		/**/
 
 /* HAS_STDIO_STREAM_ARRAY:
  *	This symbol, if defined, tells that there is an array

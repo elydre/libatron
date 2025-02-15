@@ -13,7 +13,7 @@ done
 
 # copy cmd to build with profanOS
 for e in cmd/*; do
-    cp -r $e profanOS/zapps/cmd/
+    cp -r $e profanOS/zapps/c/
 done
 
 # copy headers to profanOS directory
@@ -58,7 +58,7 @@ done
 # copy compiled commands to build directory
 for e in cmd/* $(cat tocp.txt); do
     e=$(basename $e .c)
-    cp profanOS/out/zapps/cmd/$e.elf build
+    cp profanOS/out/zapps/c/$e.elf build
 done
 
 rm -rf profanOS tocp.txt
