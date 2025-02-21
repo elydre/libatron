@@ -1,0 +1,109 @@
+diff -Naur src/libarchive/archive_random.c profan/libarchive/archive_random.c
+--- src/libarchive/archive_random.c	2024-10-13 10:11:23.000000000 +0200
++++ profan/libarchive/archive_random.c	2025-02-11 13:18:05.589100725 +0100
+@@ -46,6 +46,9 @@
+ #ifdef HAVE_SYS_TIME_H
+ #include <sys/time.h>
+ #endif
++
++#undef HAVE_PTHREAD_H
++
+ #ifdef HAVE_PTHREAD_H
+ #include <pthread.h>
+ #endif
+diff -Naur src/libarchive/filter_fork_posix.c profan/libarchive/filter_fork_posix.c
+--- src/libarchive/filter_fork_posix.c	2024-10-13 10:11:23.000000000 +0200
++++ profan/libarchive/filter_fork_posix.c	2025-02-12 11:50:51.003481397 +0100
+@@ -144,11 +144,7 @@
+ 
+ #else /* HAVE_POSIX_SPAWNP */
+ 
+-#if HAVE_VFORK
+-	child = vfork();
+-#else
+ 	child = fork();
+-#endif
+ 	if (child == -1)
+ 		goto stdout_opened;
+ 	if (child == 0) {
+diff -Naur src/libarchive_fe/passphrase.c profan/libarchive_fe/passphrase.c
+--- src/libarchive_fe/passphrase.c	2024-10-13 10:11:23.000000000 +0200
++++ profan/libarchive_fe/passphrase.c	2025-02-11 12:56:02.211842925 +0100
+@@ -129,7 +129,7 @@
+ #endif
+ #include <signal.h>
+ #include <string.h>
+-#include <termios.h>
++// #include <termios.h>
+ #include <unistd.h>
+ 
+ #ifndef _PATH_TTY
+@@ -168,7 +168,7 @@
+ 	ssize_t nr;
+ 	int input, output, save_errno, i, need_restart;
+ 	char ch, *p, *end;
+-	struct termios term, oterm;
++	// struct termios term, oterm;
+ #ifdef HAVE_SIGACTION
+ 	struct sigaction sa, savealrm, saveint, savehup, savequit, saveterm;
+ 	struct sigaction savetstp, savettin, savettou, savepipe;
+@@ -205,7 +205,7 @@
+ 	 * If we are using a tty but are not the foreground pgrp this will
+ 	 * generate SIGTTOU, so do it *before* installing the signal handlers.
+ 	 */
+-	if (input != STDIN_FILENO && tcgetattr(input, &oterm) == 0) {
++	/*if (input != STDIN_FILENO && tcgetattr(input, &oterm) == 0) {
+ 		memcpy(&term, &oterm, sizeof(term));
+ 		if (!(flags & RPP_ECHO_ON))
+ 			term.c_lflag &= ~(ECHO | ECHONL);
+@@ -219,7 +219,7 @@
+ 		term.c_lflag |= ECHO;
+ 		memset(&oterm, 0, sizeof(oterm));
+ 		oterm.c_lflag |= ECHO;
+-	}
++	}*/
+ 
+ #ifdef HAVE_SIGACTION
+ 	/*
+@@ -263,21 +263,21 @@
+ 	}
+ 	*p = '\0';
+ 	save_errno = errno;
+-	if (!(term.c_lflag & ECHO)) {
++	/*if (!(term.c_lflag & ECHO)) {
+ 		int r = write(output, "\n", 1);
+ 		(void)r;
+-	}
++	}*/
+ 
+ 	/* Restore old terminal settings and signals. */
+-	if (memcmp(&term, &oterm, sizeof(term)) != 0) {
++	/*if (memcmp(&term, &oterm, sizeof(term)) != 0) {
+ 		const int sigttou = signo[SIGTTOU];
+ 
+-		/* Ignore SIGTTOU generated when we are not the fg pgrp. */
++		// Ignore SIGTTOU generated when we are not the fg pgrp.
+ 		while (tcsetattr(input, _T_FLUSH, &oterm) == -1 &&
+ 		    errno == EINTR && !signo[SIGTTOU])
+ 			continue;
+ 		signo[SIGTTOU] = sigttou;
+-	}
++	}*/
+ #ifdef HAVE_SIGACTION
+ 	(void)sigaction(SIGALRM, &savealrm, NULL);
+ 	(void)sigaction(SIGHUP, &savehup, NULL);
+diff -Naur src/unzip/bsdunzip.c profan/unzip/bsdunzip.c
+--- src/unzip/bsdunzip.c	2024-10-13 10:11:23.000000000 +0200
++++ profan/unzip/bsdunzip.c	2025-02-12 19:44:52.371964591 +0100
+@@ -449,9 +449,10 @@
+ 	char buf[4];
+ 
+ 	for (;;) {
+-		fprintf(stderr,
++		printf(
+ 		    "replace %s? [y]es, [n]o, [A]ll, [N]one, [r]ename: ",
+ 		    *path);
++        fflush(stdout);
+ 		if (fgets(buf, sizeof(buf), stdin) == NULL)
+ 			goto stdin_err;
+ 		switch (*buf) {

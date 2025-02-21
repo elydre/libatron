@@ -21,6 +21,7 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **sulfur** | Sulfur interpreter | *sync* | [here](https://github.com/asqel/sulfur_lang) | GPL-3.0 |
 | **vlink** | multi format linker | 0.17a | [here](https://web.archive.org/web/20221203014918/http://sun.hasenbraten.de/vlink/index.php?view=main) | proprietary (open source) |
 | - | - | - | - | - |
+| **libarchive** | bsd archive library | 3.7.7 | [here](https://github.com/libarchive/libarchive) | as-is |
 | **libcjson** | JSON parser | 1.7.17 | [here](https://github.com/DaveGamble/cJSON) | MIT |
 | **libgcc** | GCC runtime | 13.2.1 | [here](https://gcc.gnu.org/) | GPL-3.0 |
 | **libm** | Math library | openlibm 0.8.2 | [here](https://github.com/JuliaMath/openlibm) | MIT |

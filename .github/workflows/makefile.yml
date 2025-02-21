@@ -21,7 +21,7 @@ jobs:
 
     - name: build libs
       run: |
-        sh build_all.sh
+        make
 
     - name: Release to GitHub
       uses: marvinpinto/action-automatic-releases@latest
