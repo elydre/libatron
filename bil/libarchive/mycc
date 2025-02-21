@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ "$@" == *" -shared "* ]] || [[ "$@" == *" -c "* ]]; then
-    gcc "$@"
+    gcc -nostdlib "$@"
 else
-    gcc -Wl,-T link.ld "$@"
+    gcc -nostdlib -Wl,-T link.ld "$@"
 fi
