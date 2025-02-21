@@ -1,7 +1,11 @@
 #!/bin/bash
 
+set -- -nostdlib $(echo "$@" | sed 's/-Wl,[^ ]*//g')
+
 if [[ "$@" == *" -shared "* ]] || [[ "$@" == *" -c "* ]]; then
-    gcc -nostdlib "$@"
+    set -- $(echo "$@" | sed 's/-fvisibility=hidden//')
+    gcc "$@"
 else
-    gcc -nostdlib -Wl,-T link.ld "$@"
+    set -- $(echo "$@" | sed 's/\.\/\.libs\/libarchive\.so/-L.\/.libs -larchive/')
+    gcc -Wl,-T link.ld $@
 fi

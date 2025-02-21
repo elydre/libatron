@@ -47,6 +47,9 @@ export PKG_CONFIG=/bin/false
 ./configure --prefix=/ \
             --host=i686-linux-gnu \
             --build=x86_64-linux-gnu \
+            --enable-shared --disable-static \
+            --enable-bsdtar=static --enable-bsdcpio=static \
+            --enable-bsdcat=static --enable-bsdunzip=static \
             CC="$CC" \
             CFLAGS="$CFLAGS" \
             LDFLAGS="$LDFLAGS"
@@ -57,7 +60,6 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-cp .libs/libarchive.a ../../../build/libarchive.a
 cp .libs/libarchive.so ../../../build/libarchive.so
 cp .libs/libarchive_fe.a ../../../build/libarchive_fe.a
 
