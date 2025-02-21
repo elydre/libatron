@@ -51,7 +51,7 @@ export PKG_CONFIG=/bin/false
             CFLAGS="$CFLAGS" \
             LDFLAGS="$LDFLAGS"
 
-make -j$(nproc)
+make -j$(nproc)  SHELL="/bin/sh -x"
 
 if [ $? -ne 0 ]; then
     exit 1
