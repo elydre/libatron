@@ -42,6 +42,8 @@ export CC="../mycc"
 export CFLAGS="-m32 -ffreestanding -fno-exceptions -nostdlib -nostdinc -fno-stack-protector -I $profan_path/include/zlibs -I $profan_path/include/addons -Wall -D__profanOS__ -U__linux__ -Wno-unused-function"
 export LDFLAGS="-Wl,-melf_i386 -nostdlib -L$profan_path/out/zlibs -lc"
 
+export PKG_CONFIG=/bin/false
+
 ./configure --prefix=/ \
             --host=i686-linux-gnu \
             --build=x86_64-linux-gnu \
