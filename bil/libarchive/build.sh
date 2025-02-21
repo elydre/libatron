@@ -53,6 +53,8 @@ export PKG_CONFIG=/bin/false
 
 make -j$(nproc)
 
+cat /tmp/mycc.log
+
 if [ $? -ne 0 ]; then
     exit 1
 fi
