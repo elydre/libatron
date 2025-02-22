@@ -57,7 +57,7 @@ make -j$(nproc)
 cp .libs/libpng16.so ../../../build/libpng16.so
 cp .libs/libpng16.a  ../../../build/libpng16.a
 
-tar -cf ../../../build/libpng_headers.tar png.h pngconf.h pnglibconf.h
+tar -czf ../../../build/libpng_headers.tar.gz png.h pngconf.h pnglibconf.h
 
 cd ..
 rm -Rf libpng-1.6.47
