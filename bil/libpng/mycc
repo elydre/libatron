@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -- -nostdlib -U__linux__ $(echo "$@" | sed 's/-Wl,[^ ]*//g')
+
+if [[ "$@" == *" -shared "* ]] || [[ "$@" == *" -c "* ]]; then
+    gcc "$@"
+else
+    set -- $(echo "$@" | sed 's/\.\/\.libs\/libpng16\.so/-L.\/.libs -lpng16/')
+    gcc -Wl,-T link.ld "$@" 
+fi
