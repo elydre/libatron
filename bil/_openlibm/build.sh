@@ -59,7 +59,7 @@ wait
 OBJS=$(find . -name "*.o")
 
 ar -rcs $DEST/libm.a $OBJS
-gcc -shared -nostdlib -m32 -o $DEST/libm.so $OBJS
+gcc -shared -nostdlib -m32 -o $DEST/libm.so $OBJS -L../../profanOS/out/zlibs -lc
 cp $DEST/libm.so ../../profanOS/out/zlibs/libm.so
 
 for file in $(find -name "*.o"); do
