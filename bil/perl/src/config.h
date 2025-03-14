@@ -1229,8 +1229,8 @@
  *	This symbol contains the ~name expanded version of ARCHLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define ARCHLIB "/zada/perl/lib/perl5/5.40.0/x86_64-linux"		/**/
-#define ARCHLIB_EXP "/zada/perl/lib/perl5/5.40.0/x86_64-linux"		/**/
+#define ARCHLIB "/zada/perl/lib/x86_64-linux"		/**/
+#define ARCHLIB_EXP "/zada/perl/lib/x86_64-linux"		/**/
 
 /* BIN:
  *	This symbol holds the path of the bin directory where the package will
@@ -1283,8 +1283,8 @@
  *	This symbol contains the ~name expanded version of PRIVLIB, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define PRIVLIB "/zada/perl/lib/perl5/5.40.0"		/**/
-#define PRIVLIB_EXP "/zada/perl/lib/perl5/5.40.0"		/**/
+#define PRIVLIB "/zada/perl/lib"		/**/
+#define PRIVLIB_EXP "/zada/perl/lib"		/**/
 
 /* SITEARCH:
  *	This symbol contains the name of the private library for this package.
@@ -1301,8 +1301,8 @@
  *	This symbol contains the ~name expanded version of SITEARCH, to be used
  *	in programs that are not prepared to deal with ~ expansion at run-time.
  */
-#define SITEARCH "/zada/perl/lib/perl5/site_perl/5.40.0/x86_64-linux"		/**/
-#define SITEARCH_EXP "/zada/perl/lib/perl5/site_perl/5.40.0/x86_64-linux"		/**/
+#define SITEARCH "/zada/perl/site_perl/x86_64-linux"		/**/
+#define SITEARCH_EXP "/zada/perl/site_perl/x86_64-linux"		/**/
 
 /* SITELIB:
  *	This symbol contains the name of the private library for this package.
@@ -1324,9 +1324,9 @@
  *	removed.  The elements in inc_version_list (inc_version_list.U) can
  *	be tacked onto this variable to generate a list of directories to search.
  */
-#define SITELIB "/zada/perl/lib/perl5/site_perl/5.40.0"		/**/
-#define SITELIB_EXP "/zada/perl/lib/perl5/site_perl/5.40.0"		/**/
-#define SITELIB_STEM "/zada/perl/lib/perl5/site_perl"		/**/
+#define SITELIB "/zada/perl/site_perl"		/**/
+#define SITELIB_EXP "/zada/perl/site_perl"		/**/
+#define SITELIB_STEM "/zada/perl/site_perl"		/**/
 
 /* PERL_VENDORARCH:
  *	If defined, this symbol contains the name of a private library.
