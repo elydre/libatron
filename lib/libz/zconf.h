@@ -57,6 +57,7 @@
 #  define deflateSetDictionary  z_deflateSetDictionary
 #  define deflateSetHeader      z_deflateSetHeader
 #  define deflateTune           z_deflateTune
+#  define deflateUsed           z_deflateUsed
 #  define deflate_copyright     z_deflate_copyright
 #  define get_crc_table         z_get_crc_table
 #  ifndef Z_SOLO
@@ -199,16 +200,45 @@
 #  define UNALIGNED_OK
 #endif
 
+#ifdef __STDC_VERSION__
+#  ifndef STDC
+#    define STDC
+#  endif
+#  if __STDC_VERSION__ >= 199901L
+#    ifndef STDC99
+#      define STDC99
+#    endif
+#  endif
+#endif
+#if !defined(STDC) && (defined(__STDC__) || defined(__cplusplus))
+#  define STDC
+#endif
+#if !defined(STDC) && (defined(__GNUC__) || defined(__BORLANDC__))
+#  define STDC
+#endif
+#if !defined(STDC) && (defined(MSDOS) || defined(WINDOWS) || defined(WIN32))
+#  define STDC
+#endif
+#if !defined(STDC) && (defined(OS2) || defined(__HOS_AIX__))
+#  define STDC
+#endif
+
+#if defined(__OS400__) && !defined(STDC)    /* iSeries (formerly AS/400). */
+#  define STDC
+#endif
+
 #ifndef STDC
 #  ifndef const /* cannot use !defined(STDC) && !defined(const) on Mac */
 #    define const       /* note: need a more gentle solution here */
 #  endif
 #endif
 
-#if defined(ZLIB_CONST) && !defined(z_const)
-#  define z_const const
-#else
-#  define z_const
+#ifndef z_const
+#  ifdef ZLIB_CONST
+#    define z_const const
+#  else
+#    define z_const
+#  endif
 #endif
 
 #ifdef Z_SOLO
@@ -377,9 +407,15 @@ typedef int   FAR intf;
 typedef uInt  FAR uIntf;
 typedef uLong FAR uLongf;
 
-typedef void const *voidpc;
-typedef void FAR   *voidpf;
-typedef void       *voidp;
+#ifdef STDC
+   typedef void const *voidpc;
+   typedef void FAR   *voidpf;
+   typedef void       *voidp;
+#else
+   typedef Byte const *voidpc;
+   typedef Byte FAR   *voidpf;
+   typedef Byte       *voidp;
+#endif
 
 #if !defined(Z_U4) && !defined(Z_SOLO) && defined(STDC)
 #  include <limits.h>
@@ -471,7 +507,7 @@ typedef void       *voidp;
 #endif
 
 #ifndef z_off_t
-#  define z_off_t long
+#  define z_off_t long long
 #endif
 
 #if !defined(_WIN32) && defined(Z_LARGE64)

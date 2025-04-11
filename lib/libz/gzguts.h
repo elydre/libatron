@@ -3,8 +3,6 @@
  * For conditions of distribution and use, see copyright notice in zlib.h
  */
 
-#define NO_STRERROR
-
 #ifdef _LARGEFILE64_SOURCE
 #  ifndef _LARGEFILE_SOURCE
 #    define _LARGEFILE_SOURCE 1
@@ -42,8 +40,6 @@
 #ifndef _POSIX_C_SOURCE
 #  define _POSIX_C_SOURCE 200112L
 #endif
-#include <stdlib.h>
-#include <string.h>
 #include <fcntl.h>
 
 #ifdef _WIN32
@@ -122,6 +118,10 @@
    (compile with -Dlocal if your debugger can't find static symbols) */
 
 /* gz* functions always use library allocation functions */
+#ifndef STDC
+  extern voidp  malloc(uInt size);
+  extern void   free(voidpf ptr);
+#endif
 
 /* get errno and strerror definition */
 #if defined UNDER_CE
