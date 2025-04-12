@@ -53,8 +53,10 @@ EOF
 cat << EOF > mycc
 #!/bin/bash
 
+set -- -fno-exceptions "\$@"
+
 # if -shared, -c, or -E is passed
-if [[ "\$@" == *"-shared"* ]] || [[ "\$@" == *"-c"* ]] || [[ "\$@" == *"-E"* ]]; then
+if [[ "\$@" == *" -shared "* ]] || [[ "\$@" == *" -c "* ]] || [[ "\$@" == *" -E "* ]]; then
     gcc "\$@"
 else
     gcc -Wl,-T $PWD/link.ld "\$@" 
@@ -66,7 +68,7 @@ chmod +x mycc
 export AR=ar
 
 export CC=$(realpath mycc)
-export CFLAGS="-m32 -march=i686 -ffreestanding -fno-exceptions -nostdlib -nostdinc -fno-stack-protector -D_Thread_local= -I $profan_path/include/zlibs -I $profan_path/include/addons -D__profanOS__"
+export CFLAGS="-m32 -march=i686 -ffreestanding -nostdlib -nostdinc -fno-stack-protector -D_Thread_local= -I $profan_path/include/zlibs -I $profan_path/include/addons -D__profanOS__"
 export CPPFLAGS="--sysroot=useless -I $profan_path/include/zlibs -I $profan_path/include/addons"
 
 export LDFLAGS="-m32 -nostdlib -L$profan_path/out/zlibs -lc"
