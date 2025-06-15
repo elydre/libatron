@@ -132,8 +132,6 @@ char *tgetstr(id, bp)
         }
     }
 
-    serial_debug("tgetstr(%s)\n", id);
-
     return 0;
 }
 
