@@ -80,14 +80,14 @@ static OPTDESC bdesc[] =
 	{"autoindent", "ai",	NULL,		NULL,		},
 	{"inputtab", "it",	opt1string,	optisoneof,	"tab spaces ex filename identifier"},
 	{"autotab", "at",	NULL,		NULL,		},
-	{"tabstop", "ts",	opttstring,	optistab,	"8"},
+	{"tabstop", "ts",	opttstring,	optistab,	"4"},
 	{"ccprg", "cp",		optsstring,	optisstring	},
 	{"equalprg", "ep",	optsstring,	optisstring	},
 	{"keywordprg", "kp",	optsstring,	optisstring	},
 	{"makeprg", "mp",	optsstring,	optisstring	},
 	{"paragraphs", "para",	optsstring,	optisstring	},
 	{"sections", "sect",	optsstring,	optisstring	},
-	{"shiftwidth", "sw",	opttstring,	optistab,	"8"},
+	{"shiftwidth", "sw",	opttstring,	optistab,	"4"},
 	{"undolevels", "ul",	optnstring,	optisnumber	},
 	{"textwidth", "tw",	optnstring,	optisnumber	},
 	{"internal", "internal",NULL,		NULL		},
@@ -1241,7 +1241,7 @@ BUFFER bufalloc(name, bufinfo, internal)
 		o_autotab(buffer) = ElvTrue;
 		o_tabstop(buffer) = safealloc(2, sizeof(short));
 			o_tabstop(buffer)[0] = 0;
-			o_tabstop(buffer)[1] = 8;
+			o_tabstop(buffer)[1] = 4;
 			optflags(o_tabstop(buffer)) = OPT_FREE|OPT_REDRAW;
 #ifndef OSCCPRG
 # define OSCCPRG "cc ($1?$1:$2)"

@@ -50,7 +50,6 @@ int tgetent(bp, name)
 int tgetnum(id)
 	char	*id;
 {
-
     int x, y;
 
     if (strcmp(id, "co") == 0) {
@@ -61,15 +60,12 @@ int tgetnum(id)
         return y;
     }
 
-    serial_debug("tgetnum(%s)\n", id);
-
     return -1;
 }
 
 int tgetflag(id)
 	char	*id;
 {
-	serial_debug("tgetflag(%s)\n", id);
     return 0;
 }
 
