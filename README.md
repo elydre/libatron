@@ -9,6 +9,7 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **binutils** | GNU binutils | 2.44 | [here](https://sourceware.org/binutils/) | GPL-3.0 |
 | **doom** | Doom game engine | Generic 0.1 | [here](https://github.com/ozkl/doomgeneric) | GPL-2.0 |
 | **fortune** | Fortune cookie generator | - | [local](cmd/fortune.c) | GPL-3.0 |
+| **elvis** | powerful VI clone | 2.2_1 | [here](https://github.com/mbert/elvis) | Clarified Artistic |
 | **halfix** | x86 emulator | jan 2021 | [here](https://github.com/nepx/halfix) | GPL-3.0 |
 | **limine** | modern bootloader | 8 *sync* | [here](https://github.com/limine-bootloader/limine) | BSD-2-Clause |
 | **lite** | lightweight text editor | - | [here](https://github.com/rxi/lite) | MIT |
