@@ -4,7 +4,7 @@ tempinstall=$(realpath tmpinstall)
 mkdir -p $tempinstall
 
 if [ ! -f binutils-2.44.tar.gz ]; then
-    wget https://ftp.gnu.org/gnu/binutils/binutils-2.44.tar.gz
+    wget https://ftp.wayne.edu/gnu/binutils/binutils-2.44.tar.gz
 fi
 
 rm -Rf binutils-2.44
