@@ -1,4 +1,4 @@
-wget https://github.com/asqel/SDL/archive/refs/heads/SDL2.zip
+wget https://github.com/elydre/SDL/archive/refs/heads/SDL2.zip
 unzip -q SDL2.zip
 
 prefix="SDL-SDL2"
