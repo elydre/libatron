@@ -44,7 +44,7 @@ static void ttyinit2(void);
 static long caught;
 static void *panda_save;
 
-#include <profan/panda.h>
+#include <modules/panda.h>
 
 /* include the version-specific functions */
 #ifdef USE_SGTTY

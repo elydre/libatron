@@ -44,7 +44,7 @@ int tgetent(bp, name)
 	return 1;
 }
 
-#include <profan/panda.h>
+#include <modules/panda.h>
 #include <profan.h>
 
 int tgetnum(id)

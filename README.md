@@ -19,7 +19,6 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **nasm** | Netwide Assembler | 2.16.03 | [here](https://www.nasm.us/) | BSD-2-Clause |
 | **perl** | Perl interpreter | 5.40.0 | [here](https://www.perl.org/) | Artistic-2.0 |
 | **python** | Python interpreter | 3.11.11 | [here](https://www.python.org/) | PSF-2.0 |
-| **sulfur** | Sulfur interpreter | *sync* | [here](https://github.com/asqel/sulfur_lang) | GPL-3.0 |
 | - | - | - | - | - |
 | **libarchive** | bsd archive library | 3.7.7 | [here](https://github.com/libarchive/libarchive) | as-is |
 | **libcjson** | JSON parser | 1.7.17 | [here](https://github.com/DaveGamble/cJSON) | MIT |
