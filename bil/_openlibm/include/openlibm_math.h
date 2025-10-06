@@ -64,6 +64,12 @@ extern const union __nan_un {
 #ifndef __ISO_C_VISIBLE
 #define __ISO_C_VISIBLE 1999
 #endif
+#ifndef __BSD_VISIBLE
+#define __BSD_VISIBLE 0
+#endif
+#ifndef __XSI_VISIBLE
+#define __XSI_VISIBLE 0
+#endif
 //VBS end
 
 #ifdef __MATH_BUILTIN_CONSTANTS
