@@ -70,3 +70,4 @@ done
 
 rm -rf profanOS tocp.txt
 ls -gh build
+ls build | wc -l
