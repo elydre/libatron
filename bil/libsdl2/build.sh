@@ -1,7 +1,7 @@
-wget https://github.com/elydre/SDL/archive/refs/heads/SDL2.zip
+wget https://github.com/elydre/sdl2-profan/archive/refs/heads/SDL2.zip
 unzip -q SDL2.zip
 
-prefix="SDL-SDL2"
+prefix="sdl2-profan-SDL2"
 
 profan_path="../../profanOS"
 CFLAGS="-fPIC -ffreestanding -fno-exceptions -m32 -I$profan_path/include/zlibs -I$profan_path/include/addons -O1 -nostdinc -U_WIN32 -U__linux__ -I$prefix/include -Isrc -D__profanOS__=1"
@@ -28,4 +28,4 @@ wait
 
 $LD $LDFLAGS -o ../../build/libSDL2.so $bins/*.o
 
-rm -Rf SDL*
+rm -Rf *SDL*
