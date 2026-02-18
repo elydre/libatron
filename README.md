@@ -31,4 +31,4 @@ Find a list of all the libraries [here](https://github.com/elydre/profanOS/wiki/
 | **libSDL2** | Simple Directmedia Layer | 2 | [here](https://github.com/libsdl-org/SDL/tree/SDL2) | as-is |
 | **libz** | Compression library | 1.3.1.1-motley | [here](https://github.com/openbsd/src/tree/master/lib/libz) | BSD |
 
-*I'm not the author of these commands or libraries, I just made them work on profanOS.*
+*I'm not the author of these commands or libraries, I just made them work on profanOS...*
