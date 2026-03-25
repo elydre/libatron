@@ -47,13 +47,13 @@ cp -r Python-3.11.11/Lib/* python-profan/lib/python3.11
 cp -r Python-3.11.11/build/lib.linux-*/* python-profan/lib/python3.11/lib-dynload
 rm -Rf python-profan/lib/python3.11/test
 cd python-profan/lib/python3.11
-tar -czf ../../../$dest/python-lib.tar.gz *
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../$dest/python-lib.tar.gz *
 cd ../../../
 
 cp -r Python-3.11.11/Include/* python-profan/include/python3.11
 cp -r Python-3.11.11/pyconfig.h python-profan/include/python3.11/pyconfig.h
 cd python-profan/include/python3.11
-tar -czf ../../../$dest/python-include.tar.gz *
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../$dest/python-include.tar.gz *
 cd ../../../
 
 cp -r Python-3.11.11/python.elf      $dest/python.elf

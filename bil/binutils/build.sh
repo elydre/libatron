@@ -111,7 +111,7 @@ for file in $(ls); do
     mv $file $file.elf
 done
 
-tar -czf ../../../../../build/binutils.tar.gz *
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../../../build/binutils.tar.gz *
 cd ../../../
 
 rm -Rf $SRC_PATH $tempinstall mycc link.ld
