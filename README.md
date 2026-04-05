@@ -6,7 +6,7 @@ Additional libs, tools and commands for [profanOS](https://github.com/elydre/pro
 |------|-------------|---------|--------|---------|
 | **aledlang** | Aled compiler and debugger | *sync* | [here](https://github.com/elydre/aledlang) | GPL-3.0 |
 | **binutils** | GNU binutils | 2.44 | [here](https://sourceware.org/binutils/) | GPL-3.0 |
-| **dash** | Dash posix shell | 0.5.11.5 | [here](https://git.kernel.org/pub/scm/utils/dash/dash.git/tag/?h=v0.5.11.5) | as-is |
+| **dash** | Dash posix shell | 0.5.11.5 | [here](https://git.kernel.org/pub/scm/utils/dash/dash.git/tag/?h=v0.5.11.5) | GPL-2.0 |
 | **doom** | Doom game engine | Generic 0.1 | [here](https://github.com/ozkl/doomgeneric) | GPL-2.0 |
 | **fortune** | Fortune cookie generator | - | [local](cmd/fortune.c) | GPL-3.0 |
 | **elvis** | powerful VI clone | 2.2_1 | [here](https://github.com/mbert/elvis) | Clarified Artistic |
