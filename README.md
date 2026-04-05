@@ -2,7 +2,7 @@
 
 Additional libs, tools and commands for [profanOS](https://github.com/elydre/profanOS).
 
-| Library | Description | Version | source | License |
+| Name | Description | Version | source | License |
 |------|-------------|---------|--------|---------|
 | **aledlang** | Aled compiler and debugger | *sync* | [here](https://github.com/elydre/aledlang) | GPL-3.0 |
 | **binutils** | GNU binutils | 2.44 | [here](https://sourceware.org/binutils/) | GPL-3.0 |
@@ -23,13 +23,17 @@ Additional libs, tools and commands for [profanOS](https://github.com/elydre/pro
 | **unzip** | InfoZIP unzip utility | 6.0 | [here](https://infozip.sourceforge.net/UnZip.html) | unzip |
 | **sed** | BSD sed implementation | - | [here](https://github.com/openbsd/src/tree/master/usr.bin/sed) | as-is |
 | - | - | - | - | - |
-| **libarchive** | bsd archive library | 3.7.7 | [here](https://github.com/libarchive/libarchive) | as-is |
+| **libarchive** | bsd archive library | 3.7.7 | [here](https://github.com/libarchive/libarchive) | various |
 | **libcjson** | JSON parser | 1.7.17 | [here](https://github.com/DaveGamble/cJSON) | MIT |
 | **libgcc** | GCC runtime | 13.2.1 | [here](https://gcc.gnu.org/) | GPL-3.0 |
 | **libm** | Math library | openlibm 0.8.2 | [here](https://github.com/JuliaMath/openlibm) | MIT |
 | **libpng** | PNG image decoding library | 1.6.47 | [here](https://github.com/pnggroup/libpng) | libpng |
 | **libschrift** | Font rendering library | 0.10.2| [here](https://github.com/tomolt/libschrift) | ISC |
 | **libSDL2** | Simple Directmedia Layer | 2 | [here](https://github.com/libsdl-org/SDL/tree/SDL2) | as-is |
-| **libz** | Compression library | 1.3.1.1-motley | [here](https://github.com/openbsd/src/tree/master/lib/libz) | BSD |
+| **zlib** | Compression library | 1.3.1.1-motley | [here](https://github.com/openbsd/src/tree/master/lib/libz) | BSD |
+
+Each packaged project is distributed under its own license, see the `_LICENCES/` directory for details.
+Standard licenses use uppercase filenames, while project-specific licenses use dedicated files.
+Original authors retain all rights to their respective software.
 
 *I'm not the author of these commands or libraries, I just made them work on profanOS...*
