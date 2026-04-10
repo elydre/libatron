@@ -6,11 +6,11 @@ rm -f libxml2-2.15.2.tar.xz
 
 tmp_install=$(realpath tmp_install)
 output_dir=$(realpath ../../build)
+profan_path=$(realpath "../../profanOS")
 rm -Rf $tmp_install
 
 cd libxml2-2.15.2
 
-profan_path="/home/pf4/Documents/GitHub/profanOS"
 
 cat << EOF > link.ld
 STARTUP($profan_path/out/make/entry_elf.o)
