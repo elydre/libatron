@@ -63,7 +63,7 @@ make libxml2.la
 
 cd .libs
 
-gcc -m32 -shared -nostdlib -o $output_dir/libxml2.so libxml2_la-*.o -lm
+gcc -m32 -shared -nostdlib -L$profan_path/out/zlibs -o $output_dir/libxml2.so libxml2_la-*.o -lm
 
 cd ..
 
