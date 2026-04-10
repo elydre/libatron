@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -- -nostdlib "$@"
+
+if [[ "$@" == *" -shared "* ]] || [[ "$@" == *" -c "* ]]; then
+    gcc "$@"
+else
+    gcc -Wl,-T link.ld "$@" 
+fi

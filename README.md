@@ -26,10 +26,12 @@ Additional libs, tools and commands for [profanOS](https://github.com/elydre/pro
 | **libarchive** | bsd archive library | 3.7.7 | [here](https://github.com/libarchive/libarchive) | various |
 | **libcjson** | JSON parser | 1.7.17 | [here](https://github.com/DaveGamble/cJSON) | MIT |
 | **libgcc** | GCC runtime | 13.2.1 | [here](https://gcc.gnu.org/) | GPL-3.0 |
+| **libjpeg** | TurboJPEG library | jpeg 10 | | [here](https://github.com/libjpeg-turbo/ijg) | IJG |
 | **libm** | Math library | openlibm 0.8.2 | [here](https://github.com/JuliaMath/openlibm) | MIT |
 | **libpng** | PNG image decoding library | 1.6.47 | [here](https://github.com/pnggroup/libpng) | libpng |
 | **libschrift** | Font rendering library | 0.10.2| [here](https://github.com/tomolt/libschrift) | ISC |
 | **libSDL2** | Simple Directmedia Layer | 2 | [here](https://github.com/libsdl-org/SDL/tree/SDL2) | as-is |
+| **libxml2** | XML parsing library | 2.15.2 | [here](https://gitlab.gnome.org/GNOME/libxml2) | libxml2 |
 | **zlib** | Compression library | 1.3.1.1-motley | [here](https://github.com/openbsd/src/tree/master/lib/libz) | BSD |
 
 Each packaged project is distributed under its own license, see the `_LICENCES/` directory for details.

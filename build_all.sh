@@ -3,6 +3,12 @@ rm -rf profanOS build
 export PROFANOS_KIND=1
 export PROFANOS_OPTIM=2
 
+fast=0
+
+if [ "$1" = "fast" ]; then
+    fast=1
+fi
+
 check() {
     if [ $? -ne 0 ]; then
         echo "Error: $1 failed"
@@ -31,13 +37,51 @@ check "make disk with libraries"
 mkdir -p build
 
 touch tocp.txt
-for e in bil/*; do
-    echo "Building $e..."
-    cd $e
-    bash -e build.sh
-    check "build $e"
-    cd ../..
-done
+
+if [ $fast -eq 0 ]; then
+    for e in bil/*; do
+        echo "Building $e..."
+        cd $e
+        bash -e build.sh
+        check "build $e"
+        cd ../..
+    done
+else
+    for e in bil/_*; do
+        echo "Building $e..."
+        cd $e
+        bash -e build.sh
+        check "build $e"
+        cd ../..
+    done
+
+    set -euo pipefail
+
+    pids=()
+    fail=0
+
+    for e in bil/*; do
+    (
+        [[ $(basename "$e") == _* ]] && exit 0
+        echo "Building $e..."
+        cd "$e" || exit 1
+        bash -e build.sh >/dev/null 2>&1
+    ) &
+    pids+=($!)
+    done
+
+    # wait for all builds to finish
+    for pid in "${pids[@]}"; do
+        if ! wait "$pid"; then
+            fail=1
+        fi
+    done
+
+    if [ "$fail" -ne 0 ]; then
+        echo "Error: One or more builds failed"
+        exit 1
+    fi
+fi
 
 cp -v build/*.so profanOS/out/zlibs/
 

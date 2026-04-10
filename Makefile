@@ -1,7 +1,10 @@
 .PHONY: all clean
 
 all:
-	sh build_all.sh
+	bash build_all.sh
+
+fast:
+	bash build_all.sh fast
 
 clean:
 	rm -Rf build

@@ -21,7 +21,7 @@ jobs:
 
     - name: build libs
       run: |
-        make
+        make fast
 
     - name: Release to GitHub
       uses: marvinpinto/action-automatic-releases@latest

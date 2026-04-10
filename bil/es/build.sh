@@ -60,7 +60,7 @@ fi
 sed -i '106d' Makefile
 sed -i '105d' Makefile
 
-make
+make -j$(nproc)
 
 cp es ../../../build/es.elf
 cd ..

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -- -nostdlib $(echo "$@" | sed 's/-Wl,[^ ]*//g')
+
+
+if [[ "$@" == *" -shared "* ]] || [[ "$@" == *" -c "* ]]; then
+    gcc "$@"
+else
+    gcc -Wl,-T link.ld "$@" 
+fi
