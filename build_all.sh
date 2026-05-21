@@ -39,7 +39,16 @@ mkdir -p build
 touch tocp.txt
 
 if [ $fast -eq 0 ]; then
+    for e in bil/_*; do
+        echo "Building $e..."
+        cd $e
+        bash -e build.sh
+        check "build $e"
+        cd ../..
+    done
+
     for e in bil/*; do
+        [[ $(basename "$e") == _* ]] && continue
         echo "Building $e..."
         cd $e
         bash -e build.sh
@@ -111,6 +120,11 @@ for e in cmd/* $(cat tocp.txt); do
     e=$(basename $e .c)
     cp profanOS/out/zapps/c/$e.elf build
 done
+
+# tar all headers in profanOS directory
+cd profanOS/include/zlibs
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../build/profanOS_headers.tar.gz *
+cd ../../..
 
 rm -rf profanOS tocp.txt
 ls -gh build
