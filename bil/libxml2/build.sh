@@ -70,7 +70,7 @@ cd ..
 make -C include/libxml install
 
 cd $tmp_install/include/libxml2/libxml
-tar -czf $output_dir/libxml_headers.tar.gz *.h
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $output_dir/libxml_headers.tar.gz *.h
 cd ../../../..
 
 rm -Rf $tmp_install libxml2-2.15.2

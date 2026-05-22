@@ -31,7 +31,7 @@ make -j$(nproc)
 make install_dev # install_ssldirs install_sw
 
 cd $install_dir/include/openssl
-tar -czf ../../../../../build/openssl_headers.tar.gz *.h
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../../../build/openssl_headers.tar.gz *.h
 cd ../..
 
 cp lib/libcrypto.so ../../../build/libcrypto.so

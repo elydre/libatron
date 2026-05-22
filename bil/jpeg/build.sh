@@ -54,7 +54,7 @@ export LDFLAGS="-Wl,-melf_i386 -nostdlib -L$profan_path/out/zlibs -lc"
 make -j$(nproc) install
 
 cd $tmp_install/include
-tar -czf ../../../../build/libjpeg_headers.tar.gz *.h
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../../build/libjpeg_headers.tar.gz *.h
 cd ..
 
 cp lib/libjpeg.so ../../../build/libjpeg.so
