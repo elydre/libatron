@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -- -nostdlib -U__linux -U__linux__ $(echo "$@" | sed 's/-Wl,[^ ]*//g')
+
+if [[ "$@" == *" -shared "* ]]; then
+    gcc "$@" -lc
+elif [[ "$@" == *" -c "* ]]; then
+    gcc "$@"
+else
+    echo "Unsupported flags: $@"
+    exit 1
+fi

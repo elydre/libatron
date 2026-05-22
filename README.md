@@ -32,6 +32,7 @@ Additional libs, tools and commands for [profanOS](https://github.com/elydre/pro
 | **libschrift** | Font rendering library | 0.10.2| [here](https://github.com/tomolt/libschrift) | ISC |
 | **libSDL2** | Simple Directmedia Layer | 2 | [here](https://github.com/libsdl-org/SDL/tree/SDL2) | as-is |
 | **libxml2** | XML parsing library | 2.15.2 | [here](https://gitlab.gnome.org/GNOME/libxml2) | libxml2 |
+| **openssl** | TLS library | 4.0.0 | [here](https://github.com/openssl/openssl) | Apache-2.0 |
 | **zlib** | Compression library | 1.3.1.1-motley | [here](https://github.com/openbsd/src/tree/master/lib/libz) | BSD |
 
 Each packaged project is distributed under its own license, see the `_LICENCES/` directory for details.
