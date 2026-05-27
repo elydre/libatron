@@ -212,7 +212,7 @@ cp i686-elf/lib32/libstdc++.a $output_dir/libstdc++.a
 cp i686-elf/lib32/libsupc++.a $output_dir/libsupc++.a
 
 cd i686-elf/include/c++/11.2.0
-tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $output_dir/libstdc_headers.tar.gz *
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $output_dir/libstdc++_headers.tar.gz *
 
 # copy /lib/gcc dir (internal GCC files)
 cd $gcc_install/lib/gcc/i686-elf/11.2.0

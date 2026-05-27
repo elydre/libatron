@@ -53,7 +53,7 @@ cd ../../../
 cp -r Python-3.11.11/Include/* python-profan/include/python3.11
 cp -r Python-3.11.11/pyconfig.h python-profan/include/python3.11/pyconfig.h
 cd python-profan/include/python3.11
-tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../$dest/python_include.tar.gz *
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../$dest/python_headers.tar.gz *
 cd ../../../
 
 cp -r Python-3.11.11/python.elf      $dest/python.elf
