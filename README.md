@@ -1,6 +1,7 @@
 # libatron
 
-Additional libs, tools and commands for [profanOS](https://github.com/elydre/profanOS).
+This repo contains a collection of ports for [profanOS](https://github.com/elydre/profanOS),
+automatically compiled every Sunday at 3pm.
 
 | Name | Description | Version | source | License |
 |------|-------------|---------|--------|---------|
@@ -11,6 +12,7 @@ Additional libs, tools and commands for [profanOS](https://github.com/elydre/pro
 | **fortune** | Fortune cookie generator | - | [local](cmd/fortune.c) | GPL-3.0 |
 | **elvis** | powerful VI clone | 2.2_1 | [here](https://github.com/mbert/elvis) | Clarified Artistic |
 | **es** | extensible shell | 0.9.2 | [here](https://github.com/wryun/es-shell) | public domain |
+| **gcc** | GNU Compiler Collection | 11.2.0 | [here](https://gcc.gnu.org/) | GPL-2.0 |
 | **halfix** | x86 emulator | jan 2021 | [here](https://github.com/nepx/halfix) | GPL-3.0 |
 | **limine** | modern bootloader | 8 *sync* | [here](https://github.com/limine-bootloader/limine) | BSD-2-Clause |
 | **lite** | lightweight text editor | - | [here](https://github.com/rxi/lite) | MIT |
@@ -25,7 +27,6 @@ Additional libs, tools and commands for [profanOS](https://github.com/elydre/pro
 | - | - | - | - | - |
 | **libarchive** | bsd archive library | 3.7.7 | [here](https://github.com/libarchive/libarchive) | various |
 | **libcjson** | JSON parser | 1.7.17 | [here](https://github.com/DaveGamble/cJSON) | MIT |
-| **libgcc** | GCC runtime | 13.2.1 | [here](https://gcc.gnu.org/) | GPL-3.0 |
 | **libjpeg** | TurboJPEG library | jpeg 10 | [here](https://github.com/libjpeg-turbo/ijg) | IJG |
 | **libm** | Math library | openlibm 0.8.2 | [here](https://github.com/JuliaMath/openlibm) | MIT |
 | **libpng** | PNG image decoding library | 1.6.47 | [here](https://github.com/pnggroup/libpng) | libpng |
@@ -35,8 +36,8 @@ Additional libs, tools and commands for [profanOS](https://github.com/elydre/pro
 | **openssl** | TLS library | 4.0.0 | [here](https://github.com/openssl/openssl) | Apache-2.0 |
 | **zlib** | Compression library | 1.3.1.1-motley | [here](https://github.com/openbsd/src/tree/master/lib/libz) | BSD |
 
-Each packaged project is distributed under its own license, see the `_LICENCES/` directory for details.
-Standard licenses use uppercase filenames, while project-specific licenses use dedicated files.
-Original authors retain all rights to their respective software.
+I'm not the author of these commands and libraries, I just made them work on profanOS...
+Each packaged project is distributed under its own license, see the `_LICENCES/` directory for
+details, Original authors retain all rights to their respective software.
 
-*I'm not the author of these commands or libraries, I just made them work on profanOS...*
+The build system can be considered as-is.

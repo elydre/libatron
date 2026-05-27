@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [[ "$@" == *" -shared "* ]] || [[ "$@" == *" -c "* ]] || [[ "$@" == *" -E "* ]]; then
+    g++ -nostdinc -I $BUILD_BASE_PATH/tmplibcxx/include/c++/11.2.0 "$@"
+else
+    g++ -nostdinc -I $BUILD_BASE_PATH/tmplibcxx/include/c++/11.2.0 -Wl,-T $BUILD_BASE_PATH/link.ld "$@" $BUILD_BASE_PATH/tmplibcxx/lib32/libstdc++.a -L$PROFAN_PATH/out/zlibs -lc -lm
+fi

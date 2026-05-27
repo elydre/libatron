@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# if -shared, -c, or -E is passed
+if [[ "$@" == *"-shared"* ]] || [[ "$@" == *"-c"* ]] || [[ "$@" == *"-E"* ]]; then
+    gcc -m32 -march=i686 -ffreestanding -fno-exceptions -fno-omit-frame-pointer -nostdlib -nostdinc -fno-stack-protector -I $PROFAN_PATH/include/zlibs "$@"
+else
+    gcc -Wl,-T $BUILD_BASE_PATH/link.ld "$@"
+fi
