@@ -1,13 +1,13 @@
 profan_path="../../../profanOS"
 
 install_dir=$(realpath tmp_install)
-rm -Rf $install_dir openssl-4.0.0
+rm -Rf $install_dir openssl-3.6.2
 
-wget https://github.com/openssl/openssl/releases/download/openssl-4.0.0/openssl-4.0.0.tar.gz
-tar -xf openssl-4.0.0.tar.gz
-rm openssl-4.0.0.tar.gz
+wget https://github.com/openssl/openssl/releases/download/openssl-3.6.2/openssl-3.6.2.tar.gz
+tar -xf openssl-3.6.2.tar.gz
+rm openssl-3.6.2.tar.gz
 
-cd openssl-4.0.0
+cd openssl-3.6.2
 
 export CC="../mycc"
 export CFLAGS="-m32 -Wno-discarded-qualifiers -ffreestanding -fno-exceptions -nostdinc -fno-stack-protector -D__profanOS__ -DNO_SYS_PARAM_H -DNO_SYS_UN_H -DNO_SYSLOG -DOPENSSL_USE_IPV6=0"
@@ -42,4 +42,4 @@ cp lib/libssl.a  ../../../build/libssl.a
 
 cd ..
 
-rm -Rf $install_dir openssl-4.0.0
+rm -Rf $install_dir openssl-3.6.2
