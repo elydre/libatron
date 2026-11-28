@@ -1,18 +1,14 @@
-profan_path="../../../profanOS"
-
 install_dir=$(realpath tmp_install)
 rm -Rf $install_dir openssl-3.6.2
 
-wget https://github.com/openssl/openssl/releases/download/openssl-3.6.2/openssl-3.6.2.tar.gz
-tar -xf openssl-3.6.2.tar.gz
-rm openssl-3.6.2.tar.gz
+tar -xf $LIBATRON_DL_PATH/openssl-3.6.2.tar.gz
 
 cd openssl-3.6.2
 
 export CC="../mycc"
 export CFLAGS="-m32 -Wno-discarded-qualifiers -ffreestanding -fno-exceptions -nostdinc -fno-stack-protector -D__profanOS__ -DNO_SYS_PARAM_H -DNO_SYS_UN_H -DNO_SYSLOG -DOPENSSL_USE_IPV6=0"
-export CPPFLAGS="-I $profan_path/include/zlibs -I $profan_path/include/addons"
-export LDFLAGS="-Wl,-melf_i386 -nostdlib -L$profan_path/out/zlibs -lc"
+export CPPFLAGS="-I $PROFAN_PATH/include/zlibs -I $PROFAN_PATH/include/addons"
+export LDFLAGS="-Wl,-melf_i386 -nostdlib -L$PROFAN_PATH/out/zlibs -lc"
 
 ./config \
     --prefix=$install_dir \
@@ -31,14 +27,14 @@ make -j$(nproc)
 make install_dev # install_ssldirs install_sw
 
 cd $install_dir/include/openssl
-tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../../../build/openssl_headers.tar.gz *.h
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $LIBATRON_OUT_PATH/openssl_headers.tar.gz *.h
 cd ../..
 
-cp lib/libcrypto.so ../../../build/libcrypto.so
-cp lib/libcrypto.a  ../../../build/libcrypto.a
+cp lib/libcrypto.so $LIBATRON_OUT_PATH/libcrypto.so
+cp lib/libcrypto.a  $LIBATRON_OUT_PATH/libcrypto.a
 
-cp lib/libssl.so ../../../build/libssl.so
-cp lib/libssl.a  ../../../build/libssl.a
+cp lib/libssl.so $LIBATRON_OUT_PATH/libssl.so
+cp lib/libssl.a  $LIBATRON_OUT_PATH/libssl.a
 
 cd ..
 

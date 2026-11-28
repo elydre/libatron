@@ -1,15 +1,8 @@
-profan_path=$(realpath ../../profanOS)
-
 tempinstall=$(realpath tmpinstall)
 mkdir -p $tempinstall
 
-if [ ! -f binutils-2.44.tar.gz ]; then
-    wget https://ftp.wayne.edu/gnu/binutils/binutils-2.44.tar.gz
-fi
-
 rm -Rf binutils-2.44
-tar -xf binutils-2.44.tar.gz
-rm binutils-2.44.tar.gz
+tar -xf $LIBATRON_DL_PATH/binutils-2.44.tar.gz
 
 # remove "include <sys/param.h>"
 sed -i '25d' binutils-2.44/libctf/ctf-impl.h
@@ -22,7 +15,7 @@ sed -i 's/0x08048000/0xC0000000/g' binutils-2.44/ld/emulparams/elf_i386.sh
 sed -i '287i\LIB_PATH="/lib"' binutils-2.44/ld/genscripts.sh
 
 cat << EOF > link.ld
-STARTUP($profan_path/out/make/entry_elf.o)
+STARTUP($PROFAN_PATH/out/make/entry_elf.o)
 ENTRY(_start)
 
 SECTIONS {
@@ -68,10 +61,10 @@ chmod +x mycc
 export AR=ar
 
 export CC=$(realpath mycc)
-export CFLAGS="-m32 -march=i686 -ffreestanding -nostdlib -nostdinc -fno-stack-protector -D_Thread_local= -I $profan_path/include/zlibs -I $profan_path/include/addons -D__profanOS__"
-export CPPFLAGS="--sysroot=useless -I $profan_path/include/zlibs -I $profan_path/include/addons"
+export CFLAGS="-m32 -march=i686 -ffreestanding -nostdlib -nostdinc -fno-stack-protector -D_Thread_local= -I $PROFAN_PATH/include/zlibs -I $PROFAN_PATH/include/addons -D__profanOS__"
+export CPPFLAGS="--sysroot=useless -I $PROFAN_PATH/include/zlibs -I $PROFAN_PATH/include/addons"
 
-export LDFLAGS="-m32 -nostdlib -L$profan_path/out/zlibs -lc"
+export LDFLAGS="-m32 -nostdlib -L$PROFAN_PATH/out/zlibs -lc"
 
 SRC_PATH=$(realpath binutils-2.44)
 
@@ -111,7 +104,7 @@ for file in $(ls); do
     mv $file $file.elf
 done
 
-tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf ../../../../../build/binutils.tar.gz *
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $LIBATRON_OUT_PATH/binutils.tar.gz *
 cd ../../../
 
 rm -Rf $SRC_PATH $tempinstall mycc link.ld

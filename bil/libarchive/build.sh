@@ -1,16 +1,12 @@
-profan_path="../../../profanOS"
-
 rm -Rf libarchive-3.7.7
 
-wget https://github.com/libarchive/libarchive/releases/download/v3.7.7/libarchive-3.7.7.tar.gz -O libarchive.tar.gz
-tar -xf libarchive.tar.gz
-rm libarchive.tar.gz
+tar -xf $LIBATRON_DL_PATH/libarchive.tar.gz
 
 patch -p1 -d libarchive-3.7.7 < patch.diff
 cd libarchive-3.7.7
 
 cat << EOF > link.ld
-STARTUP($profan_path/out/make/entry_elf.o)
+STARTUP($PROFAN_PATH/out/make/entry_elf.o)
 ENTRY(_start)
 
 SECTIONS {
@@ -39,8 +35,8 @@ SECTIONS {
 EOF
 
 export CC="../mycc"
-export CFLAGS="-m32 -ffreestanding -fno-exceptions -nostdlib -nostdinc -fno-stack-protector -I $profan_path/include/zlibs -I $profan_path/include/addons -Wall -D__profanOS__ -U__linux__ -Wno-unused-function"
-export LDFLAGS="-Wl,-melf_i386 -nostdlib -L$profan_path/out/zlibs -lc"
+export CFLAGS="-m32 -ffreestanding -fno-exceptions -nostdlib -nostdinc -fno-stack-protector -I $PROFAN_PATH/include/zlibs -I $PROFAN_PATH/include/addons -Wall -D__profanOS__ -U__linux__ -Wno-unused-function"
+export LDFLAGS="-Wl,-melf_i386 -nostdlib -L$PROFAN_PATH/out/zlibs -lc"
 
 export PKG_CONFIG=/bin/false
 
@@ -60,13 +56,13 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-cp .libs/libarchive.so ../../../build/libarchive.so
-cp .libs/libarchive_fe.a ../../../build/libarchive_fe.a
+cp .libs/libarchive.so   $LIBATRON_OUT_PATH/libarchive.so
+cp .libs/libarchive_fe.a $LIBATRON_OUT_PATH/libarchive_fe.a
 
-cp bsdtar ../../../build/bsdtar.elf
-cp bsdcpio ../../../build/bsdcpio.elf
-cp bsdcat ../../../build/bsdcat.elf
-cp bsdunzip ../../../build/bsdunzip.elf
+cp bsdtar   $LIBATRON_OUT_PATH/bsdtar.elf
+cp bsdcpio  $LIBATRON_OUT_PATH/bsdcpio.elf
+cp bsdcat   $LIBATRON_OUT_PATH/bsdcat.elf
+cp bsdunzip $LIBATRON_OUT_PATH/bsdunzip.elf
 
 cd ..
 rm -Rf libarchive-3.7.7

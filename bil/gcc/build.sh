@@ -1,4 +1,3 @@
-export PROFAN_PATH=$(realpath "../../profanOS")
 export BUILD_BASE_PATH=$(realpath .)
 
 tmplibcxx_install=$(realpath tmplibcxx)
@@ -11,12 +10,8 @@ cc_opti="-Os"
 set -e
 
 # Download and prepare GCC sources
-rm -f gcc-11.2.0.tar.gz
-wget https://ftp.gnu.org/gnu/gcc/gcc-11.2.0/gcc-11.2.0.tar.gz
-
 rm -Rf gcc-11.2.0
-tar -xf gcc-11.2.0.tar.gz
-rm gcc-11.2.0.tar.gz
+tar -xf $LIBATRON_DL_PATH/gcc-11.2.0.tar.gz
 
 cd gcc-11.2.0
 ./contrib/download_prerequisites
@@ -200,27 +195,25 @@ rm -rf $gcc_src_path $tmplibcxx_install useless link.ld config.site
 
 apply_libcxx_header_fixes $gcc_install/i686-elf/include/c++/11.2.0
 
-output_dir=$(realpath ../../build)
-
 cd $gcc_install
 
 # copy gcc executable
-cp bin/i686-elf-gcc $output_dir/gcc.elf
+cp bin/i686-elf-gcc $LIBATRON_OUT_PATH/gcc.elf
 
 # copy c++ headers and libraries
-cp i686-elf/lib32/libstdc++.a $output_dir/libstdc++.a
-cp i686-elf/lib32/libsupc++.a $output_dir/libsupc++.a
+cp i686-elf/lib32/libstdc++.a $LIBATRON_OUT_PATH/libstdc++.a
+cp i686-elf/lib32/libsupc++.a $LIBATRON_OUT_PATH/libsupc++.a
 
 cd i686-elf/include/c++/11.2.0
-tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $output_dir/libstdc++_headers.tar.gz *
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $LIBATRON_OUT_PATH/libstdc++_headers.tar.gz *
 
 # copy /lib/gcc dir (internal GCC files)
 cd $gcc_install/lib/gcc/i686-elf/11.2.0
 rm -rf install-tools plugin
 cp $gcc_install/libexec/gcc/i686-elf/11.2.0/cc1 cc1
 cp $PROFAN_PATH/out/make/entry_elf.o crt0.o
-tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $output_dir/libgcc_dir.tar.gz *
-cp libgcc.a $output_dir/libgcc.a
+tar --mtime='UTC 2026-01-01' --sort=name --owner=0 --group=0 --numeric-owner -czf $LIBATRON_OUT_PATH/libgcc_dir.tar.gz *
+cp libgcc.a $LIBATRON_OUT_PATH/libgcc.a
 
 cd $BUILD_BASE_PATH
 rm -rf $gcc_install

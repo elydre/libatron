@@ -1,11 +1,10 @@
 FLAG1="-fPIC -march=i386 -m32 -fno-builtin -fno-stack-protector \
--std=c99 -Wall -I. -I ld80 -I include -I src -I i387 -I ../../profanOS/include/zlibs/ \
+-std=c99 -Wall -I. -I ld80 -I include -I src -I i387 -I $PROFAN_PATH/include/zlibs/ \
 -DASSEMBLER -D__BSD_VISIBLE -nostdlib -nostdinc -Wno-unused-function"
 
 FLAG2="-march=i386 -m32 -I. -I include -I i387 -I src -I ld80 \
 -DASSEMBLER -D__BSD_VISIBLE -nostdlib -nostdinc -fno-builtin -fno-stack-protector"
 
-DEST="../../build"
 for e in common.c e_acos.c e_acosf.c e_acosh.c e_acoshf.c e_asin.c e_asinf.c e_atan2.c \
 e_atan2f.c e_atanh.c e_atanhf.c e_cosh.c e_coshf.c e_expf.c e_fmodf.c e_hypot.c e_hypotf.c \
 e_j0.c e_j0f.c e_j1.c e_j1f.c e_jn.c e_jnf.c e_lgamma.c e_lgamma_r.c e_lgammaf.c e_lgammaf_r.c \
@@ -58,9 +57,9 @@ wait
 
 OBJS=$(find . -name "*.o")
 
-ar -rcs $DEST/libm.a $OBJS
-gcc -shared -nostdlib -m32 -o $DEST/libm.so $OBJS -L../../profanOS/out/zlibs -lc
-cp $DEST/libm.so ../../profanOS/out/zlibs/libm.so
+ar -rcs $LIBATRON_OUT_PATH/libm.a $OBJS
+gcc -shared -nostdlib -m32 -o $LIBATRON_OUT_PATH/libm.so $OBJS -L$PROFAN_PATH/out/zlibs -lc
+cp $LIBATRON_OUT_PATH/libm.so $PROFAN_PATH/out/zlibs/libm.so
 
 for file in $(find -name "*.o"); do
     rm $file

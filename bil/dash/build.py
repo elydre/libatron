@@ -1,6 +1,7 @@
 import os, sys
 
-profan_path = "../../profanOS"
+profan_path = os.getenv("PROFAN_PATH")
+
 if sys.argv[1:]:
     profan_path = sys.argv[1]
 if not os.path.exists(profan_path):

@@ -1,12 +1,12 @@
-wget https://github.com/elydre/sdl2-profan/archive/refs/heads/SDL2.zip
-unzip -q SDL2.zip
+rm -Rf *SDL*
+
+tar -xf $LIBATRON_DL_PATH/SDL2.tar.gz
 
 prefix="sdl2-profan-SDL2"
 
-profan_path="../../profanOS"
-CFLAGS="-fPIC -ffreestanding -fno-exceptions -m32 -I$profan_path/include/zlibs -I$profan_path/include/addons -O1 -nostdinc -U_WIN32 -U__linux__ -I$prefix/include -Isrc -D__profanOS__=1"
+CFLAGS="-fPIC -ffreestanding -fno-exceptions -m32 -I$PROFAN_PATH/include/zlibs -I$PROFAN_PATH/include/addons -O1 -nostdinc -U_WIN32 -U__linux__ -I$prefix/include -Isrc -D__profanOS__=1"
 
-LDFLAGS="-m elf_i386 -nostdlib -shared -L $profan_path/out/zlibs -lc -lm"
+LDFLAGS="-m elf_i386 -nostdlib -shared -L $PROFAN_PATH/out/zlibs -lc -lm"
 CC=gcc
 LD=ld
 
@@ -26,6 +26,6 @@ done
 
 wait
 
-$LD $LDFLAGS -o ../../build/libSDL2.so $bins/*.o
+$LD $LDFLAGS -o $LIBATRON_OUT_PATH/libSDL2.so $bins/*.o
 
 rm -Rf *SDL*

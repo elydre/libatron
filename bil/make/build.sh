@@ -1,5 +1,5 @@
-CFLAG="-m32 -ffreestanding -fno-exceptions -nostdinc -fno-stack-protector -DHAVE_CONFIG_H -I src -I lib -DLIBDIR=\"/lib\" -DLOCALEDIR=\"/idk\" -I ../../profanOS/include/zlibs -D__profanOS__"
-LD_FLAGS="-m elf_i386 -nostdlib -L ../../profanOS/out/zlibs -T ../../profanOS/tools/link_elf.ld -lc"
+CFLAG="-m32 -ffreestanding -fno-exceptions -nostdinc -fno-stack-protector -DHAVE_CONFIG_H -I src -I lib -DLIBDIR=\"/lib\" -DLOCALEDIR=\"/idk\" -I $PROFAN_PATH/include/zlibs -D__profanOS__"
+LD_FLAGS="-m elf_i386 -nostdlib -L $PROFAN_PATH/out/zlibs -T $PROFAN_PATH/tools/link_elf.ld -lc"
 
 rm -rf obj
 mkdir obj
@@ -38,5 +38,5 @@ gcc $CFLAG -c -o obj/remote-stub.o src/remote-stub.c
 gcc $CFLAG -c -o obj/fnmatch.o lib/fnmatch.c
 gcc $CFLAG -c -o obj/glob.o lib/glob.c
 
-ld $LD_FLAGS -o ../../build/make.elf ../../profanOS/out/make/entry_elf.o obj/*.o
+ld $LD_FLAGS -o $LIBATRON_OUT_PATH/make.elf $PROFAN_PATH/out/make/entry_elf.o obj/*.o
 rm -rf obj
